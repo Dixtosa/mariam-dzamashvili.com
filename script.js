@@ -533,7 +533,7 @@ function initProjects() {
         $(this).html("All " + filterName.charAt(0).toUpperCase() + filterName.slice(1) + "s")
     }
     )).parents("select").trigger("chosen:updated"),
-    $.ajax(homeURL + "/home/projects/").done((function(e) {
+    $.ajax(homeURL + projectsPath).done((function(e) {
         $("#projects-grid").html(e),
         $("#project-filters").addClass("visible"),
         responsive(!1),
@@ -4284,7 +4284,10 @@ var ua = window.navigator.userAgent
   , iOSSafari = iOS && webkit && !ua.match(/CriOS/i)
   , platform = window.navigator.oscpu;
 platform || (platform = "");
-var $htmlBody = $("html,body"), $body = $("body"), $header = $("#header"), $footer = $("#footer"), $menu = $("#menu"), $contentWrap = $("#content-wrap"), $sectionViews = $("#section-views"), $projectsGrid = $("#projects-grid"), $projects, homeURL = $('meta[name="home-url"]').attr("content"), analyticsID = $('meta[name="google-analytics-id"]').attr("content"), winWidth, winHeight, transTime = 400, breakpoint = 700, headerHeight = 50, subnavHeight = 30, dotWidth = 15, dotsWidth, footerHeight, heroHeight, heroMargin, modalInit, modalCount = 1, setOpen, searchThrottle, scrollPos, scrollInterval = 1, lastScrollPos = 0, repositioning = !1, secTopPos, secHeight, secBot, subnavPos, pageName = $("#content").attr("data-pagename"), stateData, attempts = 0, isPopState = !1, currentState = window.location.href, i, itemCount, filterName, filterAttrs, filtersList, cookieFilters, projectsList = "", storedProjectsList = "", storedListSet = !1, lazyInitThrottle;
+var $htmlBody = $("html,body"), $body = $("body"), $header = $("#header"), $footer = $("#footer"), $menu = $("#menu"), $contentWrap = $("#content-wrap"), $sectionViews = $("#section-views"), $projectsGrid = $("#projects-grid"), $projects, 
+    homeURL = $('meta[name="variable-home-url"]').attr("content"), 
+    projectsPath = $('meta[name="variable-projects-path"]').attr("content"), 
+    analyticsID = $('meta[name="google-analytics-id"]').attr("content"), winWidth, winHeight, transTime = 400, breakpoint = 700, headerHeight = 50, subnavHeight = 30, dotWidth = 15, dotsWidth, footerHeight, heroHeight, heroMargin, modalInit, modalCount = 1, setOpen, searchThrottle, scrollPos, scrollInterval = 1, lastScrollPos = 0, repositioning = !1, secTopPos, secHeight, secBot, subnavPos, pageName = $("#content").attr("data-pagename"), stateData, attempts = 0, isPopState = !1, currentState = window.location.href, i, itemCount, filterName, filterAttrs, filtersList, cookieFilters, projectsList = "", storedProjectsList = "", storedListSet = !1, lazyInitThrottle;
 $(document).on("lazybeforeunveil", (function(e) {
     clearTimeout(lazyInitThrottle),
     lazyInitThrottle = setTimeout((function() {
