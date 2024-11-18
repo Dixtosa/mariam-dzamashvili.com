@@ -4052,7 +4052,6 @@ body.search-open .modal.search-modal {
     display: block;
     width: 12px;
     height: 12px;
-    background: url("i/chosen-sprite.png") -42px 1px no-repeat;
     font-size: 1px
 }
 
@@ -4093,7 +4092,7 @@ body.search-open .modal.search-modal {
     height: 2.8rem;
     outline: 0;
     border-bottom: 1px solid #3f3934;
-    background: url("i/chosen-sprite.png") no-repeat 100% -20px;
+    background: url("") no-repeat 100% -20px;
     font-family: sans-serif;
     line-height: normal;
     border-radius: 0
@@ -4245,7 +4244,6 @@ body.search-open .modal.search-modal {
     display: block;
     width: 12px;
     height: 12px;
-    background: url("i/chosen-sprite.png") -42px 1px no-repeat;
     font-size: 1px
 }
 
@@ -4372,7 +4370,6 @@ body.search-open .modal.search-modal {
 
 .chosen-rtl .chosen-search input[type="text"] {
     padding: 4px 5px 4px 20px;
-    background: url("i/chosen-sprite.png") no-repeat -30px -20px;
     direction: rtl
 }
 
@@ -4394,7 +4391,6 @@ only screen and (min-resolution: 1.5dppx) {
     .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
     .chosen-container .chosen-results-scroll-down span,
     .chosen-container .chosen-results-scroll-up span {
-        background-image: url("i/chosen-sprite@2x.png") !important;
         background-size: 52px 37px !important;
         background-repeat: no-repeat !important
     }

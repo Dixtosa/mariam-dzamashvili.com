@@ -551,12 +551,12 @@ function initialize(someUrl) {
             targetHash.indexOf("?") > -1 && (targetHash = targetHash.split("?")[0]);
             if (targetHash.indexOf("/") == -1) {
                 (targetAnchor = $(targetHash)).length &&
-                !targetAnchor.is(".section-view") &&
+                    !targetAnchor.is(".section-view") &&
 
-                ($(document).scrollTop(targetAnchor.offset().top),
-                    (lastScrollPos = targetAnchor.offset().top), $body.addClass("hide-header"),
-                    (scrollPos = subnavPos),
-                    (lastScrollPos = subnavPos));
+                    ($(document).scrollTop(targetAnchor.offset().top),
+                        (lastScrollPos = targetAnchor.offset().top), $body.addClass("hide-header"),
+                        (scrollPos = subnavPos),
+                        (lastScrollPos = subnavPos));
             }
         }
 
@@ -4562,8 +4562,9 @@ var scroll =
     searchOpen = !1;
 $(document).ready(function () {
     var e;
-    analyticsID && (gaTracker(analyticsID), gaTrack(currentState, pageName.split(" — ")[1])),
-        responsive(!1),
+    analyticsID && (gaTracker(analyticsID), gaTrack(currentState, pageName.split(" — ")[1]));
+
+    responsive(!1),
         $footer.hide(),
         $("#menu-button").on("click", function () {
             menuOpen ? closeMenu() : openMenu();
@@ -4611,10 +4612,13 @@ $(document).ready(function () {
         (stateData = {
             path: currentState,
             scrollTop: scrollPos,
-        }),
-        history.replaceState(stateData, pageName, currentState),
-        initialize(currentState),
-        constant();
+        });
+    history.replaceState(stateData, pageName, currentState);
+    if (currentState.indexOf("#") > -1)
+        loadWrap(currentState);
+    else
+        initialize(currentState);
+    constant();
 }),
     $(window).bind("load", function () {
         $body.removeClass("first-load"),
