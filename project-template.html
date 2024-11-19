@@ -1,11 +1,11 @@
 <div class="content-wrap" id="content-wrap">
-    <div class="content" id="content" data-pagename="{{NAME}}" data-url="#/projects/apartment/Park Home ვაკე/">
+    <div class="content" id="content" data-pagename="{{NAME}}" data-url="#/projects/{{category}}/{{name}}/">
         <section class="hero project-hero deepblack-bg" id="project-hero">
             <div class="fullscreen">
                 <div class="slideshow">
                     <div class="slide">
                         <div class="slide-image object-cover">
-                            <img class="lazyload" src="/images/{{category}}/{{name}}/main.webp" />
+                            <img class="lazyload" data-src="/images/{{category}}/{{name}}/main.webp" />
                             <div class="caption">
                                 <h5>{{photography_by}}</h5>
                             </div>
@@ -21,7 +21,7 @@
                     {{#slides}}
                     <div class="slide">
                         <div class="slide-image object-contain hidden">
-                            <img class="lazyload" src="{{.}}" />
+                            <img class="lazyload" data-src="{{.}}" />
                             <div class="caption">
                                 <h5>{{photography_by}}</h5>
                             </div>

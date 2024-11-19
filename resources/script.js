@@ -775,6 +775,12 @@ function renderTemplate(html, data){
 }
 
 function loadWrap(projectPath) {
+    var projectName = null;
+    if (projectPath.indexOf("/projects/"))
+    {
+        projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
+    }
+
     $contentWrap.focus(),
         "Win16" === platform ||
             "Windows 95" === platform ||
@@ -802,16 +808,9 @@ function loadWrap(projectPath) {
                         $htmlBody.scrollTop(0),
                         (scrollPos = -1),
                         (checkedElems = !1),
-                        $.ajax(projectPath.replace("#", ""))
+                        $.ajax("project-template.html")
                             .done(function (t) {
-                                $contentWrap.html(renderTemplate($(t).find("#content"), {
-                                    "Park Home ვაკე":{
-                                        "name": "Park Home ვაკე",
-                                        "description": "აღწერა",
-                                        "category": "apartment",
-                                        "numberOfSlides": 23,
-                                    }
-                                }["Park Home ვაკე"]));
+                                $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
                                 (pageName = $("#content").attr("data-pagename"));
                                 (document.title = pageName);
                                 (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
