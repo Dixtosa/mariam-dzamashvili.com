@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="variable-home-url" content="" />
-    <meta name="variable-projects-path" content="/home/projects/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="preload" href="https://use.typekit.net/zdo1npz.css" as="style" />
@@ -436,155 +435,55 @@
         <ul class="site-menu body-copy"
             style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 70%, rgba(0, 0, 0, 0.6) 85%, rgba(0, 0, 0, 0.05) 100%);">
             <li style="float: right;">
-
                 <h6>
-
                     <a href="#projects" style="font-size: large;" data-clear-cookies>პროექტები</a>
-
                 </h6>
-
                 <ul>
-
                     <li>
-
                         <a href="/?type=apartment" style="font-size: medium;padding-left: 20;"
                             data-clear-cookies>ბინა</a>
-
                     </li>
-
                     <li>
-
                         <a href="/?type=private-house" style="font-size: medium;padding-left: 20;"
                             data-clear-cookies>სახლი</a>
-
                     </li>
-
                     <li>
-
                         <a href="/?type=commercial" style="font-size: medium;padding-left: 20;"
                             data-clear-cookies>კომერციული</a>
-
                     </li>
-
                 </ul>
-
                 <h6>
-
                     <a href="/Contact/" style="font-size: large;" data-clear-cookies>კონტაქტი</a>
-
                 </h6>
-
             </li>
         </ul>
     </menu>
+    
     <div class="content-wrap" id="content-wrap">
         <div class="content" id="content" data-pagename="Lorem Ipsum.">
 
             <section class="hero home-hero offblack-bg white-text" id="home-hero">
 
-                <div class="fullscreen">
-                    <a href="#/projects/apartment/Park Home ვაკე/" class="fixed-wrap fixed" data-clear-cookies
-                        data-project="Park Home ვაკე">
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="Park Home ვაკე" data-sizes="auto"
-                                src="images/apartment/Park Home ვაკე/main.webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">Park Home ვაკე</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
+                <template id="homepage-project-template">
+                    <div class="fullscreen">
+                        <a href="#/projects/{{category}}/{{name}}/" class="fixed-wrap fixed" data-clear-cookies>
+                            <div class="slide-image object-cover">
+                                <img class="landscape-image" alt="{{name}}" data-sizes="auto"
+                                    src="projects/images/{{category}}/{{name}}/main.webp" />
                             </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="fullscreen">
-                    <a href="/#/projects/apartment/ბინა იქსორი/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა იქსორი" data-sizes="auto"
-                                src="images/apartment/ბინა იქსორი/main.webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა იქსორი</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
+                            <div class="slide-text over-image">
+                                <div class="wrap text-wrap align-center">
+                                    <h1 class="widont balance-text">{{name}}</h1>
+                                    <button tabindex="-1">მაჩვენე მეტი</button>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="fullscreen">
-                    <a href="./projects/apartment/ბინა იქსორი/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა იქსორი" data-sizes="auto"
-                                src="images/apartment/ბინა იქსორი/r (30).webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა იქსორი</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="fullscreen">
-                    <a href="./projects/apartment/ბინა არტ ჰოლთან/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა არტ ჰოლთან" data-sizes="auto"
-                                src="images/apartment/ბინა არტ ჰოლთან/main.webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა არტ ჰოლთან</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="fullscreen">
-                    <a href="./projects/apartment/ბინა 'ბახტრიონი'/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა 'ბახტრიონი'" data-sizes="auto"
-                                src="images/apartment/ბინა 'ბახტრიონი'/main.webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა 'ბახტრიონი'</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="fullscreen">
-                    <a href="./projects/apartment/ბინა იქსორი/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა იქსორი" data-sizes="auto"
-                                src="images/apartment/ბინა იქსორი/r (15).webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა იქსორი</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="fullscreen">
-                    <a href="./projects/apartment/ბინა კიკვიძის პარკთან/" class="fixed-wrap fixed" data-clear-cookies>
-                        <div class="slide-image object-cover">
-                            <img class="landscape-image" alt="ბინა კიკვიძის პარკთან" data-sizes="auto"
-                                src="images/apartment/ბინა კიკვიძის პარკთან/main.webp" />
-                        </div>
-                        <div class="slide-text over-image">
-                            <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">ბინა კიკვიძის პარკთან</h1>
-                                <button tabindex="-1">მაჩვენე მეტი</button>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="safari-fix" id="safari-fix"></div>
+                        </a>
+                    </div>
+                </template>
             </section>
+            
+            <div class="safari-fix" id="safari-fix"></div>
+
             <section class="carbon-bg white-text home-mission" id="home-mission">
                 <div class="fullscreen">
                     <div class="fixed-wrap fixed">
@@ -695,9 +594,10 @@
         </div>
     </div>
     <script type="text/javascript" src="resources/jquery.js" id="jquery-js"></script>
-    <script type="text/javascript" src="resources/script.js" id="v2_scripts-js"></script>
-    <script type="text/javascript" src="images/data.js"></script>
     <script src="https://unpkg.com/mustache@latest"></script>
+    <script type="text/javascript" src="resources/script.js" id="v2_scripts-js"></script>
+    <script type="text/javascript" src="projects/data.js"></script>
+    <script type="text/javascript" src="projects/homepage-projects.js"></script>
 
 </body>
 
