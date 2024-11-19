@@ -607,7 +607,10 @@ function initProjects() {
             })
             .parents("select")
             .trigger("chosen:updated"),
-        $.ajax(homeURL + projectsPath).done(function (e) {
+        $.ajax(homeURL + projectsGridTemplate).done(function (e) {
+            var gridData = window.projectsGrid.map(item => window.projectData[item]);
+            e = Mustache.render(e, { projects: gridData });
+
             $("#projects-grid").html(e),
                 $("#project-filters").addClass("visible"),
                 responsive(!1),
@@ -765,19 +768,18 @@ function filterGrid() {
         }, transTime);
 }
 
-function renderTemplate(html, data){
+function renderTemplate(html, data) {
     data.slides = [];
-    for (i = 0; i < data.numberOfSlides; i++)
-    {
-        data.slides.push(`/images/${data.category}/${data.name}/${i+1}.webp`);
+    for (i = 0; i < data.numberOfSlides; i++) {
+        data.slides.push(`/projects/images/${data.category}/${data.name}/${i + 1}.webp`);
     }
     return Mustache.render(html.html(), data);
 }
 
 function loadWrap(projectPath) {
+    debugger;
     var projectName = null;
-    if (projectPath.indexOf("/projects/"))
-    {
+    if (projectPath.indexOf("/projects/")) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
     }
 
@@ -808,7 +810,7 @@ function loadWrap(projectPath) {
                         $htmlBody.scrollTop(0),
                         (scrollPos = -1),
                         (checkedElems = !1),
-                        $.ajax("project-template.html")
+                        projectPath != "/" && $.ajax(projectViewTemplate)
                             .done(function (t) {
                                 $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
                                 (pageName = $("#content").attr("data-pagename"));
@@ -4508,7 +4510,8 @@ var $htmlBody = $("html,body"),
     $projectsGrid = $("#projects-grid"),
     $projects,
     homeURL = $('meta[name="variable-home-url"]').attr("content"),
-    projectsPath = "/projects/grid-projects.html",
+    projectViewTemplate = "projects/project-view-template.html",
+    projectsGridTemplate = "/projects/projects-grid-template.html",
     analyticsID = $('meta[name="google-analytics-id"]').attr("content"),
     winWidth,
     winHeight,
