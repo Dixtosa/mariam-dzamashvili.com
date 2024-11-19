@@ -1,27 +1,19 @@
 <div class="content-wrap" id="content-wrap">
-    <div class="content" id="content" data-pagename="Olson Kundig — Palms Residence" data-url="#/projects/{{category}}/{{name}}/">
+    <div class="content" id="content" data-pagename="{{NAME}}" data-url="#/projects/apartment/Park Home ვაკე/">
         <section class="hero project-hero deepblack-bg" id="project-hero">
             <div class="fullscreen">
                 <div class="slideshow">
-
                     <div class="slide">
                         <div class="slide-image object-cover">
                             <img class="lazyload" src="/images/{{category}}/{{name}}/main.webp" />
                             <div class="caption">
-                                <h5>Photo: Trevor Tondro</h5>
+                                <h5>{{PHOTOGRAPHY_BY}}</h5>
                             </div>
-                            <button class="caption-icon x" title="toggle image credit">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="19.1" viewBox="0 0 19.1 19.1">
-                                    <circle cx="9.5" cy="9.5" r="8.5" class="st0" />
-                                    <line x1="9.5" x2="9.5" y1="5.6" y2="13.5" class="v-line" />
-                                    <line x1="13.5" x2="5.6" y1="9.5" y2="9.5" class="h-line" />
-                                </svg>
-                            </button>
                         </div>
                         <div class="slide-text place-center">
                             <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">Palms Residence</h1>
-                                <p>Venice, California</p>
+                                <h1 class="widont balance-text">{{NAME}}</h1>
+                                <p>{{LOCATION}}</p>
                             </div>
                         </div>
                     </div>
@@ -31,15 +23,8 @@
                         <div class="slide-image object-contain hidden">
                             <img class="lazyload" src="{{.}}" />
                             <div class="caption">
-                                <h5>Photo: Trevor Tondro</h5>
+                                <h5>{{PHOTOGRAPHY_BY}}</h5>
                             </div>
-                            <button class="caption-icon x" title="toggle image credit">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19.1" height="19.1" viewBox="0 0 19.1 19.1">
-                                    <circle cx="9.5" cy="9.5" r="8.5" class="st0" />
-                                    <line x1="9.5" x2="9.5" y1="5.6" y2="13.5" class="v-line" />
-                                    <line x1="13.5" x2="5.6" y1="9.5" y2="9.5" class="h-line" />
-                                </svg>
-                            </button>
                         </div>
                     </div>
                     {{/slides}}
@@ -49,68 +34,23 @@
         </section>
         <div class="subnav-wrap">
             <nav class="subnav section-toggle" id="section-toggle">
-                <button>Description</button>
-                <button>Recognition</button>
-                <button>Related</button>
+                <button>აღწერა</button>
+                <button>ინტერნეტში</button>
             </nav>
         </div>
         <div class="section-views white-bg black-text" id="section-views">
             <div class="section-view" id="project-description">
                 <section>
                     <div class="wrap text-wrap section-title-wrap">
-                        <h2 class="widont balance-text">Palms Residence</h2>
-                        <p>Venice, California</p>
-                        <ul class="project-team leadership">
-                            <li>
-                                <h6>Design Principal</h6>
-                                <p>Tom Kundig</p>
-                            </li>
-                        </ul>
+                        <h2 class="widont balance-text">{{name}}</h2>
+                        <p>{{LOCATION}}</p>
                     </div>
                     <section class="flexible-section text_block-section">
                         <div class="wrap text-wrap body-copy">
-                            <p>Located in an established neighborhood in Venice, California, Palms Residence celebrates its special site by maximizing opportunities for engagement and immersion in nature. To avoid disrupting the mature landscape – designed by the previous owner, landscape architect Jay Griffith – Palms Residence weaves through palm trees, ferns, eucalyptus, bamboo, and many other species of plants and flowers. This footprint also preserves a beloved magnolia tree, while framing a large central courtyard that extends living and gathering space into the landscape.</p>
-                            <p>Aligned with the client’s desire for an architectural expression soft to the landscape and neighborhood, Palms Residence trades rusted steel and heavy metals for white stucco cladding, bronze window and door framing, and extensive transparency. Abundant natural daylight in concert with warm wood floors and ceilings allows the home to feel both airy and grounded, a delicate addition to the landscape. Inside, a long entry corridor and gallery wall lead to a generous kitchen with living and dining room beyond. Lined with glass on two sides, the sunken living and dining areas act as a pavilion within the landscape, inspired by the courtyard gardens of California’s mid-century architecture and the client’s travels in Japan. These spaces and the perpendicular kitchen frame two sides of a large exterior deck, with sliding doors to allow the activity of the home to spill outside.</p>
-                            <p>A ground-floor studio, connected to the main volume of the home via an open breezeway, includes a full mirrored wall and space for several students to practice yoga together. The breezeway provides a secondary location for yoga, anchored by two custom Gamelatron installations used for sound therapy and meditation. The second-floor program includes a master suite, bedrooms for the client’s nearly grown children and a roof deck, preserving privacy while continuing to foster engagement with the surrounding landscape.</p>
-                            <p>Throughout the home, signature items and materials selected by the client – including a front door handle in the shape of a snake – highlight her eclectic, artistic style. Additional feature pieces include a petrified wood slab countertop in the powder room, custom bed in the master suite and custom sideboard in the living room. Hand-painted elements like a tile mural in the kitchen and wallpaper accent in the master suite underscore the craft and artistry of the home’s design.</p>
-                            <p>Palm Residence features several sustainable design elements to further honor the landscape and surrounding ecosystem. Large roof overhangs provide shade and reduce solar heat gain, while the many windows support passive ventilation throughout the interior. A rooftop solar array generates electricity, complemented by a below-grade, high efficiency BlueDuct HVAC system to reduce the home’s overall energy needs. A plant-based insulation product, HempWool by Hempitecture, supports building performance goals without toxic additives, ensuring a healthy indoor environment.</p>
+                            {{DESCRIPTION}}
                         </div>
                     </section>
-                    <section class="quote-section sandstone-bg black-text">
-                        <div class="wrap text-wrap quote-wrap project-quote-wrap align-center">
-                            <q class="quote">
-                                <span class="widont balance-text">
-                                    The client’s agenda for this project was incredibly refreshing – she wanted to under‑build the site and introduce a home that would fit silently in the landscape, almost disappearing into the neighborhood. Our challenge was to ensure the design responded to the spirit of that landscape, as well as to the client’s lifestyle and functional &nbsp;needs.
-                                </span>
-                            </q>
-                            <cite>Tom Kundig, FAIA, RIBA, Design Principal</cite>
-                        </div>
-                    </section>
-                    <div class="wrap text-wrap body-copy">
-                        <h4>Team</h4>
-                        <ul class="project-team leadership">
-                            <li>
-                                <h6>Design Principal</h6>
-                                <p>
-                                    <a href="/people/tom-kundig/">Tom Kundig</a>
-                                    <br />
-                                </p>
-                            </li>
-                            <li>
-                                <h6>Project Manager</h6>
-                                <p>
-                                    Kozo Nozawa<br />
-                                </p>
-                            </li>
-                            <li>
-                                <h6>Project Architect</h6>
-                                <p>
-                                    <a href="/people/cameron-shampine/">Cameron Shampine</a>
-                                    <br />
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
+
                 </section>
             </div>
             <div class="section-view" id="project-Recognition">
@@ -121,7 +61,7 @@
                     <div class="wrap text-wrap body-copy">
                         <h6 class="subheading">2023</h6>
                         <p>
-                            <a href="https://www.dwell.com/article/palms-residence-olson-kundig-gillian-wynn-venice-california-bab7481c" target="_blank" rel="noopener">Vencill Sanchez, Kelly. &#8220;A Secret Garden Springs to Life Around a Glassy Olson Kundig Home.&#8221;Dwell Online, 14 February 2023. Web.</a>
+                            {{publications}}
                         </p>
                     </div>
                 </section>
@@ -131,12 +71,16 @@
                     <div class="grid projects-grid deepblack-bg white-text">
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="photo of Martha’s Vineyard Horizon House" data-id="22109" data-sizes="auto" data-src="/wp-content/uploads/2022/08/13006_00_N48_medium-2-1440x956.jpg" data-srcset="/wp-content/uploads/2022/08/13006_00_N48_medium-2-720x478.jpg 720w,
+                                <img class="lazyload" alt="photo of Martha’s Vineyard Horizon House" data-id="22109"
+                                    data-sizes="auto"
+                                    data-src="/wp-content/uploads/2022/08/13006_00_N48_medium-2-1440x956.jpg"
+                                    data-srcset="/wp-content/uploads/2022/08/13006_00_N48_medium-2-720x478.jpg 720w,
                 /wp-content/uploads/2022/08/13006_00_N48_medium-2-1440x956.jpg 1440w,
                 /wp-content/uploads/2022/08/13006_00_N48_medium-2-2160x1434.jpg 2160w" />
                             </div>
                             <div class="grid-text align-center">
-                                <a href="/projects/marthas-vineyard-horizon-house/" data-clear-cookies title="Martha’s Vineyard Horizon House">
+                                <a href="/projects/marthas-vineyard-horizon-house/" data-clear-cookies
+                                    title="Martha’s Vineyard Horizon House">
                                     <h3 class="widont balance-text">Martha’s Vineyard Horizon &nbsp;House</h3>
                                     <h5>Martha's Vineyard, MA</h5>
                                 </a>
@@ -144,7 +88,9 @@
                         </div>
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="photo of Bilgola Beach House" data-id="20950" data-sizes="auto" data-src="/wp-content/uploads/2021/04/13069_00_N434_web-1440x1152.jpg" data-srcset="/wp-content/uploads/2021/04/13069_00_N434_web-720x576.jpg 720w,
+                                <img class="lazyload" alt="photo of Bilgola Beach House" data-id="20950"
+                                    data-sizes="auto"
+                                    data-src="/wp-content/uploads/2021/04/13069_00_N434_web-1440x1152.jpg" data-srcset="/wp-content/uploads/2021/04/13069_00_N434_web-720x576.jpg 720w,
                 /wp-content/uploads/2021/04/13069_00_N434_web-1440x1152.jpg 1440w,
                 /wp-content/uploads/2021/04/13069_00_N434_web-2160x1728.jpg 2160w" />
                             </div>
@@ -157,12 +103,15 @@
                         </div>
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="Upper East Side Residence" data-id="11591" data-sizes="auto" data-src="/wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-1440x961.jpg" data-srcset="/wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-720x481.jpg 720w,
+                                <img class="lazyload" alt="Upper East Side Residence" data-id="11591" data-sizes="auto"
+                                    data-src="/wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-1440x961.jpg"
+                                    data-srcset="/wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-720x481.jpg 720w,
                 /wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-1440x961.jpg 1440w,
                 /wp-content/uploads/2016/08/14_10063_00_Upper_East_Side_N2_high-2160x1442.jpg 2160w" />
                             </div>
                             <div class="grid-text align-center">
-                                <a href="/projects/upper-east-side-residence/" data-clear-cookies title="Upper East Side Residence">
+                                <a href="/projects/upper-east-side-residence/" data-clear-cookies
+                                    title="Upper East Side Residence">
                                     <h3 class="widont balance-text">Upper East Side &nbsp;Residence</h3>
                                     <h5>New York, New York</h5>
                                 </a>
@@ -170,7 +119,9 @@
                         </div>
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="Photo: Aaron Leitz" data-id="20141" data-sizes="auto" data-src="/wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-1440x955.jpg" data-srcset="/wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-720x478.jpg 720w,
+                                <img class="lazyload" alt="Photo: Aaron Leitz" data-id="20141" data-sizes="auto"
+                                    data-src="/wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-1440x955.jpg"
+                                    data-srcset="/wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-720x478.jpg 720w,
                 /wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-1440x955.jpg 1440w,
                 /wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-2160x1433.jpg 2160w" />
                             </div>
@@ -183,12 +134,15 @@
                         </div>
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="photo of California Meadow House" data-id="19812" data-sizes="auto" data-src="/wp-content/uploads/2019/11/11006_00_N118_high-1440x1079.jpg" data-srcset="/wp-content/uploads/2019/11/11006_00_N118_high-720x540.jpg 720w,
+                                <img class="lazyload" alt="photo of California Meadow House" data-id="19812"
+                                    data-sizes="auto"
+                                    data-src="/wp-content/uploads/2019/11/11006_00_N118_high-1440x1079.jpg" data-srcset="/wp-content/uploads/2019/11/11006_00_N118_high-720x540.jpg 720w,
                 /wp-content/uploads/2019/11/11006_00_N118_high-1440x1079.jpg 1440w,
                 /wp-content/uploads/2019/11/11006_00_N118_high-2160x1619.jpg 2160w" />
                             </div>
                             <div class="grid-text align-center">
-                                <a href="/projects/california-meadow-house/" data-clear-cookies title="California Meadow House">
+                                <a href="/projects/california-meadow-house/" data-clear-cookies
+                                    title="California Meadow House">
                                     <h3 class="widont balance-text">California Meadow &nbsp;House</h3>
                                     <h5>San Francisco Bay Area</h5>
                                 </a>
@@ -196,7 +150,10 @@
                         </div>
                         <div class="grid-item">
                             <div class="grid-image">
-                                <img class="lazyload" alt="photo of False Bay Residence" data-id="3434" data-sizes="auto" data-src="/wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-1440x891.jpg" data-srcset="/wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-720x446.jpg 720w,
+                                <img class="lazyload" alt="photo of False Bay Residence" data-id="3434"
+                                    data-sizes="auto"
+                                    data-src="/wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-1440x891.jpg"
+                                    data-srcset="/wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-720x446.jpg 720w,
                 /wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-1440x891.jpg 1440w,
                 /wp-content/uploads/2015/04/02_05014_00_N5-e1433963303384-2160x1337.jpg 2160w" />
                             </div>
@@ -211,7 +168,10 @@
                 </section>
             </div>
         </div>
-        <nav class="post-nav white-bg black-text" id="projects-nav" data-project-id="22584" data-project-slug="palms-residence">
+
+        <!--
+        <nav class="post-nav white-bg black-text" id="projects-nav" data-project-id="22584"
+            data-project-slug="palms-residence">
             <ul class="links">
                 <li>
                     <a id="prev-link" href="/projects/manhattan-beach-residence/" class="prev">
@@ -235,6 +195,7 @@
                 </li>
             </ul>
         </nav>
+        -->
     </div>
     <!-- #content -->
 </div>

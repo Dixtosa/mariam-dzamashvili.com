@@ -3,7 +3,9 @@
     "name": "bina vashlijvari",
     "description": "",
     "category": "apartment",
-    "numberOfSlides": 11
+    "numberOfSlides": 11,
+    "location": "",
+    "publications": ""
   },
   "Park Home ვაკე": {
     "name": "Park Home ვაკე",
