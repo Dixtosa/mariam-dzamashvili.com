@@ -543,7 +543,6 @@ function initialize(someUrl) {
         }, 2 * transTime);
 
 
-    debugger;
     if (isPopState) { console.log("init via popstate") }
     else {
         if ((someUrl && someUrl.indexOf("#") > -1) || "" !== window.location.hash) {
@@ -765,6 +764,16 @@ function filterGrid() {
             $projectsGrid.removeClass("filtering"), responsive(!1);
         }, transTime);
 }
+
+function renderTemplate(html, data){
+    data.slides = [];
+    for (i = 0; i < data.numberOfSlides; i++)
+    {
+        data.slides.push(`/images/${data.category}/${data.name}/${i+1}.webp`);
+    }
+    return Mustache.render(html.html(), data);
+}
+
 function loadWrap(projectPath) {
     $contentWrap.focus(),
         "Win16" === platform ||
@@ -795,7 +804,14 @@ function loadWrap(projectPath) {
                         (checkedElems = !1),
                         $.ajax(projectPath.replace("#", ""))
                             .done(function (t) {
-                                $contentWrap.html($(t).find("#content"));
+                                $contentWrap.html(renderTemplate($(t).find("#content"), {
+                                    "Park Home ვაკე":{
+                                        "name": "Park Home ვაკე",
+                                        "description": "აღწერა",
+                                        "category": "apartment",
+                                        "numberOfSlides": 23,
+                                    }
+                                }["Park Home ვაკე"]));
                                 (pageName = $("#content").attr("data-pagename"));
                                 (document.title = pageName);
                                 (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
