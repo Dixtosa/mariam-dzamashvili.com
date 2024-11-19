@@ -7,13 +7,13 @@
                         <div class="slide-image object-cover">
                             <img class="lazyload" src="/images/{{category}}/{{name}}/main.webp" />
                             <div class="caption">
-                                <h5>{{PHOTOGRAPHY_BY}}</h5>
+                                <h5>{{photography_by}}</h5>
                             </div>
                         </div>
                         <div class="slide-text place-center">
                             <div class="wrap text-wrap align-center">
-                                <h1 class="widont balance-text">{{NAME}}</h1>
-                                <p>{{LOCATION}}</p>
+                                <h1 class="widont balance-text">{{name}}</h1>
+                                <p>{{location}}</p>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="slide-image object-contain hidden">
                             <img class="lazyload" src="{{.}}" />
                             <div class="caption">
-                                <h5>{{PHOTOGRAPHY_BY}}</h5>
+                                <h5>{{photography_by}}</h5>
                             </div>
                         </div>
                     </div>
@@ -43,11 +43,11 @@
                 <section>
                     <div class="wrap text-wrap section-title-wrap">
                         <h2 class="widont balance-text">{{name}}</h2>
-                        <p>{{LOCATION}}</p>
+                        <p>{{location}}</p>
                     </div>
                     <section class="flexible-section text_block-section">
                         <div class="wrap text-wrap body-copy">
-                            {{DESCRIPTION}}
+                            {{description}}
                         </div>
                     </section>
 
@@ -59,7 +59,7 @@
                         <h3>Publications</h3>
                     </div>
                     <div class="wrap text-wrap body-copy">
-                        <h6 class="subheading">2023</h6>
+                        <h6 class="subheading">{{year}}</h6>
                         <p>
                             {{publications}}
                         </p>
