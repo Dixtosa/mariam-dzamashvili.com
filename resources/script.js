@@ -779,7 +779,7 @@ function renderTemplate(html, data) {
 function loadWrap(projectPath) {
     debugger;
     var projectName = null;
-    if (projectPath.indexOf("/projects/")) {
+    if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
     }
 
@@ -810,9 +810,13 @@ function loadWrap(projectPath) {
                         $htmlBody.scrollTop(0),
                         (scrollPos = -1),
                         (checkedElems = !1),
-                        projectPath != "/" && $.ajax(projectViewTemplate)
+                        $.ajax(projectViewTemplate)
                             .done(function (t) {
-                                $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
+                                if (projectName)
+                                    $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
+                                else
+                                    $contentWrap.html("");
+                                
                                 (pageName = $("#content").attr("data-pagename"));
                                 (document.title = pageName);
                                 (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
