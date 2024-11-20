@@ -124,6 +124,10 @@ function anchorHook() {
             var t = $(this).attr("href"),
                 i = new RegExp("/" + window.location.host + "/");
             if (e.ctrlKey || e.metaKey || $(this).is("[download]")) return !0;
+            
+            //debugger;
+            if (t == undefined) return;
+
             if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), t.indexOf(".jpg") > -1 || t.indexOf(".jpeg") > -1 || t.indexOf(".png") > -1 || t.indexOf(".gif") > -1)) {
                 var s;
                 (s = $(this).is("[data-image-index]")
@@ -205,11 +209,11 @@ function anchorHook() {
                                     }, transTime))
                                 : loadWrap(t);
                     } else {
-                            $(this).is('[rel="nofollow"]')
-                                ? window.open(t, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
-                                : i.test(this.href) && !$(this).is(".post-edit-link")
-                                    ? loadWrap(t)
-                                    : -1 === t.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
+                        $(this).is('[rel="nofollow"]')
+                            ? window.open(t, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
+                            : i.test(this.href) && !$(this).is(".post-edit-link")
+                                ? loadWrap(t)
+                                : -1 === t.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
                     }
                 }
             }
@@ -599,78 +603,94 @@ function alignToSubnav() {
             }, transTime + 1));
 }
 function initProjects() {
-    $projectsGrid.css("min-height", winHeight - headerHeight + subnavHeight - footerHeight + "px"),
-        ($body.is(".touchscreen") || winWidth < breakpoint) &&
+    $projectsGrid.css("min-height", winHeight - headerHeight + subnavHeight - footerHeight + "px");
+
+
+    ($body.is(".touchscreen") || winWidth < breakpoint) &&
         $('#project-filters option[value="all"]')
             .each(function () {
                 (filterName = $(this).parents("select").attr("id").split("-")[1]), $(this).html("All " + filterName.charAt(0).toUpperCase() + filterName.slice(1) + "s");
             })
             .parents("select")
-            .trigger("chosen:updated"),
-        $.ajax(homeURL + projectsGridTemplate).done(function (e) {
-            var gridData = window.projectsGrid.map(item => window.projectData[item]);
-            e = Mustache.render(e, { projects: gridData });
+            .trigger("chosen:updated");
 
-            $("#projects-grid").html(e),
-                $("#project-filters").addClass("visible"),
-                responsive(!1),
-                anchorHook(),
-                cleanUp(),
-                $projectsGrid.attr("data-loaded", "true"),
-                ($projects = $projectsGrid.find(".grid-item")).each(function () {
-                    $(this).attr("data-last-position", $(this).attr("data-position"));
+
+    $.ajax(homeURL + projectsGridTemplate).done(function (e) {
+        var gridData = window.projectsGrid.map(item => window.projectData[item]);
+        e = Mustache.render(e, { projects: gridData });
+
+
+        $("#projects-grid").html(e);
+        $("#project-filters").addClass("visible");
+        responsive(!1);
+        anchorHook();
+        cleanUp();
+        $projectsGrid.attr("data-loaded", "true");
+        
+
+
+        ($projects = $projectsGrid.find(".grid-item")).each(function () {
+            $(this).attr("data-last-position", $(this).attr("data-position"));
+        }),
+            Cookies.get("project-list") ? ((storedProjectsList = Cookies.get("project-list")), (storedListSet = !1)) : "" !== projectsList ? ((storedProjectsList = projectsList), (storedListSet = !1)) : (storedProjectsList = "");
+        var t = !1;
+        if (
+            ($("#project-filters").on("click", function () {
+                t = !0;
+            }),
+                $("#project-filters select").on("change", function () {
+                    t && ((storedListSet = !0), alignToSubnav()), filterGrid(), $(this).next(".chosen-container").attr("data-value", $(this).val());
                 }),
-                Cookies.get("project-list") ? ((storedProjectsList = Cookies.get("project-list")), (storedListSet = !1)) : "" !== projectsList ? ((storedProjectsList = projectsList), (storedListSet = !1)) : (storedProjectsList = "");
-            var t = !1;
-            if (
-                ($("#project-filters").on("click", function () {
-                    t = !0;
+                $("#projects-sort").on("click", function (e) {
+                    $projectsGrid.addClass("filtering"),
+                        $("#projects-sort").is(".active")
+                            ? ($("#projects-sort").removeClass("active"),
+                                setTimeout(function () {
+                                    sortProjects("" === filterAttrs ? "position" : "last-position");
+                                }, transTime / 2))
+                            : ($("#projects-sort").addClass("active"),
+                                setTimeout(function () {
+                                    sortProjects("title");
+                                }, transTime / 2)),
+                        setTimeout(function () {
+                            $projectsGrid.removeClass("filtering");
+                        }, transTime),
+                        void 0 !== e.originalEvent && (alignToSubnav(), (storedListSet = !0));
                 }),
-                    $("#project-filters select").on("change", function () {
-                        t && ((storedListSet = !0), alignToSubnav()), filterGrid(), $(this).next(".chosen-container").attr("data-value", $(this).val());
+                $("#project-filters select option[selected]")
+                    .parents("select")
+                    .each(function () {
+                        clearCookies(), $(this).trigger("change").trigger("chosen:updated");
                     }),
-                    $("#projects-sort").on("click", function (e) {
-                        $projectsGrid.addClass("filtering"),
-                            $("#projects-sort").is(".active")
-                                ? ($("#projects-sort").removeClass("active"),
-                                    setTimeout(function () {
-                                        sortProjects("" === filterAttrs ? "position" : "last-position");
-                                    }, transTime / 2))
-                                : ($("#projects-sort").addClass("active"),
-                                    setTimeout(function () {
-                                        sortProjects("title");
-                                    }, transTime / 2)),
-                            setTimeout(function () {
-                                $projectsGrid.removeClass("filtering");
-                            }, transTime),
-                            void 0 !== e.originalEvent && (alignToSubnav(), (storedListSet = !0));
-                    }),
-                    $("#project-filters select option[selected]")
-                        .parents("select")
-                        .each(function () {
-                            clearCookies(), $(this).trigger("change").trigger("chosen:updated");
-                        }),
-                    $("#projects-sort").is(".set-active") && (clearCookies(), "" === storedProjectsList && sortProjects("title"), $("#projects-sort").removeClass("set-active").addClass("active")),
-                    Cookies.getJSON("filters") && (cookieFilters = Cookies.getJSON("filters")).length > -1)
-            )
-                for (i = 0; i < cookieFilters.length; i++)
-                    "sort" === (filterName = cookieFilters[i].split("=")[0])
-                        ? $("#projects-sort").trigger("click")
-                        : $('#project-filters select[id="select-' + filterName + '"]')
-                            .val(cookieFilters[i].split("=")[1])
-                            .trigger("change")
-                            .trigger("chosen:updated");
-            $("#show-filters, #close-filters").on("click", function () {
-                $("#project-filters").toggleClass("show");
-            });
+                $("#projects-sort").is(".set-active") && (clearCookies(), "" === storedProjectsList && sortProjects("title"), $("#projects-sort").removeClass("set-active").addClass("active")),
+                Cookies.getJSON("filters") && (cookieFilters = Cookies.getJSON("filters")).length > -1)
+        )
+            for (i = 0; i < cookieFilters.length; i++)
+                "sort" === (filterName = cookieFilters[i].split("=")[0])
+                    ? $("#projects-sort").trigger("click")
+                    : $('#project-filters select[id="select-' + filterName + '"]')
+                        .val(cookieFilters[i].split("=")[1])
+                        .trigger("change")
+                        .trigger("chosen:updated");
+        $("#show-filters, #close-filters").on("click", function () {
+            $("#project-filters").toggleClass("show");
         });
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectType = urlParams.get('type');
+        if (projectType) {
+            $("#project-filters select").val(projectType);
+            $("#project-filters select").trigger("change");
+        }
+    });
 }
 function sortProjects(e) {
     console.log("sort by " + e);
     var t = $projects.sort(function (t, i) {
         return String.prototype.localeCompare.call($(t).data(e), $(i).data(e));
     });
-    $projectsGrid.empty().append(t).promise().done(makeCookies), anchorHook();
+    $projectsGrid.empty().append(t).promise();//.done(makeCookies);
+    anchorHook();
 }
 function clearCookies() {
     Cookies.remove("filters"), Cookies.remove("project-list"), (filtersList = []), (projectsList = "");
@@ -689,7 +709,7 @@ function makeCookies() {
     else {
         for (
             Cookies.set("filters", filtersList, {
-                expires: 1,
+                expires: 0.001,
             }),
             cookieFilters = Cookies.getJSON("filters"),
             i = 0;
@@ -735,12 +755,12 @@ function updateQueryString(e, t) {
     } else window.history.replaceState(stateData, pageName, currentState);
 }
 function filterGrid() {
-    $projectsGrid.addClass("filtering"),
-        (filterAttrs = ""),
-        (itemCount = 0),
+    $projectsGrid.addClass("filtering");
+        (filterAttrs = "");
+        (itemCount = 0);
         $("#project-filters select").each(function () {
             $(this).attr("data-value", $(this).val()), "all" !== $(this).val() && (filterAttrs += "[data-" + $(this).attr("id").split("-")[1] + 's*="' + $(this).val() + '"]');
-        }),
+        });
         setTimeout(function () {
             if ("" === storedProjectsList || storedListSet)
                 "" === filterAttrs
@@ -814,8 +834,6 @@ function loadWrap(projectPath) {
                                 if (projectName)
                                     $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
                                 else {
-                                    $contentWrap.html("");
-                                    initialize(projectPath);
                                 }
 
                                 (pageName = $("#content").attr("data-pagename"));
