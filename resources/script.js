@@ -124,7 +124,7 @@ function anchorHook() {
             var clickedItemHref = $(this).attr("href"),
                 locationHostRegex = new RegExp("/" + window.location.host + "/");
             if (e.ctrlKey || e.metaKey || $(this).is("[download]")) return !0;
-            
+
             if (clickedItemHref == undefined) return;
 
             if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
@@ -140,6 +140,7 @@ function anchorHook() {
                     $("#modal-slideshow").slick("slickGoTo", s, !0);
             } else {
                 if ("#" === clickedItemHref) return !1;
+
                 if (clickedItemHref.indexOf("#go-back") > -1) window.history.back(), $("#error-modal").removeClass("show");
                 else if (clickedItemHref.indexOf("#") > -1) {
                     targetPage = clickedItemHref.split("#")[0];
@@ -178,7 +179,7 @@ function anchorHook() {
                         targetPage && targetPage !== currentState && (e.preventDefault(), loadWrap(clickedItemHref));
                     }
                 } else {
-                    debugger;
+
                     if (currentState.endsWith(clickedItemHref) || (currentState.indexOf("#") > -1 && clickedItemHref === currentState.split("#")[0]) || (currentState.indexOf("?") > -1 && clickedItemHref === currentState.split("?")[0] && -1 === currentState.indexOf("?s")))
                         return (
                             menuOpen && closeMenu(),
@@ -424,9 +425,11 @@ function initialize(someUrl) {
                 for (i = 0; i < cookieFilters.length; i++) "sort" !== (filterName = cookieFilters[i].split("=")[0]) && $("#projects-nav #project-" + filterName).text(filterName + ": " + cookieFilters[i].split("=")[1]);
         } else clearCookies();
     }
+    
     var o, n;
-    $sectionViews.length
-        ? $(".section-view").length > 1
+    debugger;
+    if ($sectionViews.length)
+        $(".section-view").length > 1
             ? ($sectionViews.next().length && $sectionViews.next().hide().clone().appendTo(".section-view").show(),
                 $footer.clone().appendTo(".section-view").show(),
                 $(".section-view:not(.show)").hide(),
@@ -464,7 +467,8 @@ function initialize(someUrl) {
                         }, 2))
                     : $(".section-view:first").show().addClass("show"))
             : ($(".subnav-wrap").remove(), $footer.clone().appendTo($contentWrap).show())
-        : $footer.clone().appendTo($contentWrap).show();
+        else if ($contentWrap.find("footer").length == 0)
+            $footer.clone().appendTo($contentWrap).show();
 
     $(".video-wrap").length &&
         $(".video-wrap").each(function () {
@@ -627,7 +631,7 @@ function initProjects() {
         anchorHook();
         cleanUp();
         $projectsGrid.attr("data-loaded", "true");
-        
+
 
 
         ($projects = $projectsGrid.find(".grid-item")).each(function () {
@@ -676,7 +680,7 @@ function initProjects() {
         $("#show-filters, #close-filters").on("click", function () {
             $("#project-filters").toggleClass("show");
         });
-        
+
         const urlParams = new URLSearchParams(window.location.search);
         const projectType = urlParams.get('type');
         if (projectType) {
@@ -758,33 +762,33 @@ function updateQueryString(e, t) {
 }
 function filterGrid() {
     $projectsGrid.addClass("filtering");
-        (filterAttrs = "");
-        (itemCount = 0);
-        $("#project-filters select").each(function () {
-            $(this).attr("data-value", $(this).val()), "all" !== $(this).val() && (filterAttrs += "[data-" + $(this).attr("id").split("-")[1] + 's*="' + $(this).val() + '"]');
-        });
-        setTimeout(function () {
-            if ("" === storedProjectsList || storedListSet)
-                "" === filterAttrs
-                    ? ($projects.addClass("show"), $("#projects-sort").is("active") ? sortProjects("title") : sortProjects("position"), (itemCount = $("#projects-grid .grid-item").length))
-                    : ($projects.each(function () {
-                        $(this).removeClass("show"), $(this).is(filterAttrs) && (itemCount++, $(this).attr("data-last-position", itemCount).addClass("show"));
-                    }),
-                        $("#projects-sort").is("active") ? sortProjects("title") : sortProjects("last-position"),
-                        0 === itemCount ? $("#no-projects").addClass("show") : $("#no-projects").removeClass("show"));
-            else {
-                if ((console.log("storedProjectsList", storedProjectsList), $.isArray(storedProjectsList) || (storedProjectsList = storedProjectsList.split(",").map(Number)), storedProjectsList.length > 0)) {
-                    for (i = 0; i < storedProjectsList.length; i++)
-                        $('.grid-item[data-id="' + storedProjectsList[i] + '"]')
-                            .attr("data-stored-sort", i)
-                            .addClass("show");
-                    $(".grid-item:not([data-stored-sort])")
-                        .attr("data-stored-sort", storedProjectsList.length + 1)
-                        .removeClass("show");
-                }
-                (itemCount = storedProjectsList.length), sortProjects("stored-sort");
+    (filterAttrs = "");
+    (itemCount = 0);
+    $("#project-filters select").each(function () {
+        $(this).attr("data-value", $(this).val()), "all" !== $(this).val() && (filterAttrs += "[data-" + $(this).attr("id").split("-")[1] + 's*="' + $(this).val() + '"]');
+    });
+    setTimeout(function () {
+        if ("" === storedProjectsList || storedListSet)
+            "" === filterAttrs
+                ? ($projects.addClass("show"), $("#projects-sort").is("active") ? sortProjects("title") : sortProjects("position"), (itemCount = $("#projects-grid .grid-item").length))
+                : ($projects.each(function () {
+                    $(this).removeClass("show"), $(this).is(filterAttrs) && (itemCount++, $(this).attr("data-last-position", itemCount).addClass("show"));
+                }),
+                    $("#projects-sort").is("active") ? sortProjects("title") : sortProjects("last-position"),
+                    0 === itemCount ? $("#no-projects").addClass("show") : $("#no-projects").removeClass("show"));
+        else {
+            if ((console.log("storedProjectsList", storedProjectsList), $.isArray(storedProjectsList) || (storedProjectsList = storedProjectsList.split(",").map(Number)), storedProjectsList.length > 0)) {
+                for (i = 0; i < storedProjectsList.length; i++)
+                    $('.grid-item[data-id="' + storedProjectsList[i] + '"]')
+                        .attr("data-stored-sort", i)
+                        .addClass("show");
+                $(".grid-item:not([data-stored-sort])")
+                    .attr("data-stored-sort", storedProjectsList.length + 1)
+                    .removeClass("show");
             }
-        }, transTime / 2),
+            (itemCount = storedProjectsList.length), sortProjects("stored-sort");
+        }
+    }, transTime / 2),
         setTimeout(function () {
             $projectsGrid.removeClass("filtering"), responsive(!1);
         }, transTime);
@@ -825,18 +829,16 @@ function loadWrap(projectPath) {
                 searchOpen && closeSearch(),
                 closeModal(),
                 setTimeout(function () {
-                    $body.removeClass("subnav-fixed-bottom subnav-fixed"),
-                        $("#project-hero").removeClass("fall-in"),
-                        $(".admin-edit").length && $(".admin-edit").remove(),
-                        $htmlBody.scrollTop(0),
-                        (scrollPos = -1),
-                        (checkedElems = !1),
+                    $body.removeClass("subnav-fixed-bottom subnav-fixed");
+                    $("#project-hero").removeClass("fall-in");
+                    $(".admin-edit").length && $(".admin-edit").remove();
+                    $htmlBody.scrollTop(0);
+                    (scrollPos = -1);
+                    (checkedElems = !1);
+                    if (projectName)
                         $.ajax(projectViewTemplate)
                             .done(function (t) {
-                                if (projectName)
-                                    $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
-                                else {
-                                }
+                                $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
 
                                 (pageName = $("#content").attr("data-pagename"));
                                 (document.title = pageName);
@@ -847,7 +849,7 @@ function loadWrap(projectPath) {
                                         path: currentState,
                                         scrollTop: scrollPos,
                                     }), history.pushState(stateData, pageName, currentState));
-                                
+
                                 initialize(currentState);
 
                                 pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
@@ -857,6 +859,16 @@ function loadWrap(projectPath) {
                             .fail(function (t, i) {
                                 ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
                             });
+                    else {
+                        (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
+                        isPopState
+                            ? (isPopState = !1)
+                            : ((stateData = {
+                                path: currentState,
+                                scrollTop: scrollPos,
+                            }), history.pushState(stateData, pageName, currentState));
+                        initialize(currentState);
+                    }
                 }, transTime));
 }
 function gaTracker(e) {
