@@ -205,11 +205,11 @@ function anchorHook() {
                                     }, transTime))
                                 : loadWrap(t);
                     } else {
-                        $(this).is('[rel="nofollow"]')
-                            ? window.open(t, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
-                            : i.test(this.href) && !$(this).is(".post-edit-link")
-                                ? loadWrap(t)
-                                : -1 === t.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
+                            $(this).is('[rel="nofollow"]')
+                                ? window.open(t, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
+                                : i.test(this.href) && !$(this).is(".post-edit-link")
+                                    ? loadWrap(t)
+                                    : -1 === t.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
                     }
                 }
             }
@@ -777,7 +777,6 @@ function renderTemplate(html, data) {
 }
 
 function loadWrap(projectPath) {
-    debugger;
     var projectName = null;
     if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
@@ -814,9 +813,11 @@ function loadWrap(projectPath) {
                             .done(function (t) {
                                 if (projectName)
                                     $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
-                                else
+                                else {
                                     $contentWrap.html("");
-                                
+                                    initialize(projectPath);
+                                }
+
                                 (pageName = $("#content").attr("data-pagename"));
                                 (document.title = pageName);
                                 (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
