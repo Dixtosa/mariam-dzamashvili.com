@@ -681,6 +681,7 @@ function initProjects() {
         if (projectType) {
             $("#project-filters select").val(projectType);
             $("#project-filters select").trigger("change");
+            $("#project-filters select").trigger("chosen:updated");
         }
     });
 }
