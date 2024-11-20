@@ -127,6 +127,11 @@ function anchorHook() {
 
             if (clickedItemHref == undefined) return;
 
+            if ($(this).is(".link-to-uri-fragment")) {
+                closeMenu();
+                return 1;
+            }
+
             if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
                 var s;
                 (s = $(this).is("[data-image-index]")
@@ -427,7 +432,6 @@ function initialize(someUrl) {
     }
     
     var o, n;
-    debugger;
     if ($sectionViews.length)
         $(".section-view").length > 1
             ? ($sectionViews.next().length && $sectionViews.next().hide().clone().appendTo(".section-view").show(),
