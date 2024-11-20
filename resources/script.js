@@ -121,14 +121,13 @@ function anchorHook() {
         })
         .off("click")
         .on("click", function (e) {
-            var t = $(this).attr("href"),
-                i = new RegExp("/" + window.location.host + "/");
+            var clickedItemHref = $(this).attr("href"),
+                locationHostRegex = new RegExp("/" + window.location.host + "/");
             if (e.ctrlKey || e.metaKey || $(this).is("[download]")) return !0;
             
-            //debugger;
-            if (t == undefined) return;
+            if (clickedItemHref == undefined) return;
 
-            if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), t.indexOf(".jpg") > -1 || t.indexOf(".jpeg") > -1 || t.indexOf(".png") > -1 || t.indexOf(".gif") > -1)) {
+            if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
                 var s;
                 (s = $(this).is("[data-image-index]")
                     ? $('#modal-slideshow [data-slide-index="' + $(this).attr("data-image-index") + '"]')
@@ -140,13 +139,13 @@ function anchorHook() {
                     openModal("#slideshow-modal"),
                     $("#modal-slideshow").slick("slickGoTo", s, !0);
             } else {
-                if ("#" === t) return !1;
-                if (t.indexOf("#go-back") > -1) window.history.back(), $("#error-modal").removeClass("show");
-                else if (t.indexOf("#") > -1) {
-                    targetPage = t.split("#")[0];
-                    targetHash = t.split("#")[1];
+                if ("#" === clickedItemHref) return !1;
+                if (clickedItemHref.indexOf("#go-back") > -1) window.history.back(), $("#error-modal").removeClass("show");
+                else if (clickedItemHref.indexOf("#") > -1) {
+                    targetPage = clickedItemHref.split("#")[0];
+                    targetHash = clickedItemHref.split("#")[1];
                     if (targetHash.startsWith("/projects/")) {
-                        loadWrap(t);
+                        loadWrap(clickedItemHref);
                         return;
                     }
                     (targetAnchor = $("#" + targetHash)).is(".hidden-content");
@@ -166,8 +165,8 @@ function anchorHook() {
                                     path: currentState,
                                     scrollTop: targetOffset,
                                 }),
-                                history.replaceState(stateData, pageName, t),
-                                history.pushState(stateData, pageName, t),
+                                history.replaceState(stateData, pageName, clickedItemHref),
+                                history.pushState(stateData, pageName, clickedItemHref),
                                 $htmlBody.stop().animate(
                                     {
                                         scrollTop: targetOffset,
@@ -176,10 +175,11 @@ function anchorHook() {
                                 ),
                                 !1
                             );
-                        targetPage && targetPage !== currentState && (e.preventDefault(), loadWrap(t));
+                        targetPage && targetPage !== currentState && (e.preventDefault(), loadWrap(clickedItemHref));
                     }
                 } else {
-                    if (t === currentState || (currentState.indexOf("#") > -1 && t === currentState.split("#")[0]) || (currentState.indexOf("?") > -1 && t === currentState.split("?")[0] && -1 === currentState.indexOf("?s")))
+                    debugger;
+                    if (currentState.endsWith(clickedItemHref) || (currentState.indexOf("#") > -1 && clickedItemHref === currentState.split("#")[0]) || (currentState.indexOf("?") > -1 && clickedItemHref === currentState.split("?")[0] && -1 === currentState.indexOf("?s")))
                         return (
                             menuOpen && closeMenu(),
                             searchOpen && closeSearch(),
@@ -205,15 +205,15 @@ function anchorHook() {
                             n
                                 ? ($(this).parents(".fullscreen").clone().hide().appendTo($body).addClass("offblack-bg white-text").attr("id", "transition-cover").fadeIn(transTime).find("a").removeAttr("href"),
                                     setTimeout(function () {
-                                        loadWrap(t);
+                                        loadWrap(clickedItemHref);
                                     }, transTime))
-                                : loadWrap(t);
+                                : loadWrap(clickedItemHref);
                     } else {
                         $(this).is('[rel="nofollow"]')
-                            ? window.open(t, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
-                            : i.test(this.href) && !$(this).is(".post-edit-link")
-                                ? loadWrap(t)
-                                : -1 === t.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
+                            ? window.open(clickedItemHref, "t", "toolbar=0,resizable=1,status=0,width=600,height=500")
+                            : locationHostRegex.test(this.href) && !$(this).is(".post-edit-link")
+                                ? loadWrap(clickedItemHref)
+                                : -1 === clickedItemHref.indexOf("javascript") && (e.stopPropagation(), window.open(this.href, "_blank"));
                     }
                 }
             }
@@ -465,6 +465,7 @@ function initialize(someUrl) {
                     : $(".section-view:first").show().addClass("show"))
             : ($(".subnav-wrap").remove(), $footer.clone().appendTo($contentWrap).show())
         : $footer.clone().appendTo($contentWrap).show();
+
     $(".video-wrap").length &&
         $(".video-wrap").each(function () {
             $(this)
@@ -846,7 +847,9 @@ function loadWrap(projectPath) {
                                         path: currentState,
                                         scrollTop: scrollPos,
                                     }), history.pushState(stateData, pageName, currentState));
+                                
                                 initialize(currentState);
+
                                 pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
                                 analyticsID && gaTrack(currentState, pageName);
                                 (attempts = 0);
