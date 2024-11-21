@@ -813,7 +813,8 @@ function renderTemplate(html, data) {
     for (i = 0; i < data.numberOfSlides; i++) {
         data.slides.push(`/projects/images/${data.category}/${data.name}/${i + 1}.webp`);
     }
-    return Mustache.render(html.html(), data);
+    debugger;
+    return Mustache.render(html.prop('outerHTML'), data);
 }
 
 function loadWrap(projectPath) {
