@@ -369,7 +369,6 @@ function initSlideshows() {
         responsive(!1);
 }
 function initialize(someUrl, calledFrom) {
-
     if (
         (($sectionViews = $("#section-views")),
             ($projectsGrid = $("#projects-grid")),
@@ -816,7 +815,6 @@ function renderTemplate(html, data) {
 }
 
 function loadWrap(projectPath, calledFrom) {
-    debugger;
     var projectName = null;
     if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
@@ -874,7 +872,6 @@ function loadWrap(projectPath, calledFrom) {
                                 ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
                             });
                     else {
-                        debugger
                         //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
                         currentState = "/";
                         isPopState
@@ -4714,6 +4711,10 @@ $(document).ready(function () {
             if (e.state) {
                 debugger;
                 var t = e.state.path;
+                if (e.state.path == location.href)
+                {
+                    this.location.reload();
+                }
                 isPopState || -1 !== t.indexOf("?s=") ? null !== e.state
                     && (window.location = t) : (e.preventDefault(), (isPopState = !0), null !== e.state
                         && loadWrap(t, "popstate 4716"), console.log("popstate", t));
