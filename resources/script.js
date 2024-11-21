@@ -62,7 +62,7 @@ function loadVideo(e) {
     }
 }
 function constant() {
-    
+
     if (scrollPos === window.pageYOffset || repositioning) return scroll(constant), !1;
     if (
         (!modalInit &&
@@ -75,13 +75,11 @@ function constant() {
     )
         $header.removeClass("opaque");
     else if (modalInit) {
-        debugger
         $header.addClass("opaque");
     }
-    else if ($("#content > *:first-child").is(".hero")){
-        debugger;
+    else if ($("#content > *:first-child").is(".hero")) {
         if (0 !== heroHeight) {
-            
+
             if (
                 (($("#project-hero").length && scrollPos >= heroHeight - headerHeight) || ($("#home-hero").length && scrollPos >= heroHeight - headerHeight) || scrollPos >= heroHeight - headerHeight
                     ? $header.addClass("opaque")
@@ -94,7 +92,6 @@ function constant() {
         } else $header.removeClass("opaque");
     }
     else {
-        debugger;
         $header.addClass("opaque");
     }
     $("#page-hero").length && $("#section-toggle").length
@@ -161,7 +158,7 @@ function anchorHook() {
                     targetPage = clickedItemHref.split("#")[0];
                     targetHash = clickedItemHref.split("#")[1];
                     if (targetHash.startsWith("/projects/")) {
-                        loadWrap(clickedItemHref);
+                        loadWrap(clickedItemHref, "anchor.onclick 161");
                         return;
                     }
                     (targetAnchor = $("#" + targetHash)).is(".hidden-content");
@@ -371,7 +368,8 @@ function initSlideshows() {
     }),
         responsive(!1);
 }
-function initialize(someUrl) {
+function initialize(someUrl, calledFrom) {
+
     if (
         (($sectionViews = $("#section-views")),
             ($projectsGrid = $("#projects-grid")),
@@ -440,7 +438,7 @@ function initialize(someUrl) {
                 for (i = 0; i < cookieFilters.length; i++) "sort" !== (filterName = cookieFilters[i].split("=")[0]) && $("#projects-nav #project-" + filterName).text(filterName + ": " + cookieFilters[i].split("=")[1]);
         } else clearCookies();
     }
-    
+
     var o, n;
     if ($sectionViews.length)
         $(".section-view").length > 1
@@ -481,8 +479,8 @@ function initialize(someUrl) {
                         }, 2))
                     : $(".section-view:first").show().addClass("show"))
             : ($(".subnav-wrap").remove(), $footer.clone().appendTo($contentWrap).show())
-        else if ($contentWrap.find("footer").length == 0)
-            $footer.clone().appendTo($contentWrap).show();
+    else if ($contentWrap.find("footer").length == 0)
+        $footer.clone().appendTo($contentWrap).show();
 
     $(".video-wrap").length &&
         $(".video-wrap").each(function () {
@@ -813,11 +811,12 @@ function renderTemplate(html, data) {
     for (i = 0; i < data.numberOfSlides; i++) {
         data.slides.push(`/projects/images/${data.category}/${data.name}/${i + 1}.webp`);
     }
-    debugger;
+
     return Mustache.render(html.prop('outerHTML'), data);
 }
 
-function loadWrap(projectPath) {
+function loadWrap(projectPath, calledFrom) {
+    debugger;
     var projectName = null;
     if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
@@ -865,7 +864,7 @@ function loadWrap(projectPath) {
                                         scrollTop: scrollPos,
                                     }), history.pushState(stateData, pageName, currentState));
 
-                                initialize(currentState);
+                                initialize(currentState, "from loadwrap");
 
                                 pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
                                 analyticsID && gaTrack(currentState, pageName);
@@ -875,14 +874,16 @@ function loadWrap(projectPath) {
                                 ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
                             });
                     else {
-                        (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
+                        debugger
+                        //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
+                        currentState = "/";
                         isPopState
                             ? (isPopState = !1)
                             : ((stateData = {
                                 path: currentState,
                                 scrollTop: scrollPos,
                             }), history.pushState(stateData, pageName, currentState));
-                        initialize(currentState);
+                        initialize(projectPath, "from loadwrap else");
                     }
                 }, transTime));
 }
@@ -4660,7 +4661,7 @@ $(document).ready(function () {
                                     $("#search-results").load(homeURL + "/?s=" + e.replace(" ", "+")),
                                     console.log(e),
                                     $("#search-results a").on("click", function (e) {
-                                        e.preventDefault(), loadWrap($(this).attr("href"));
+                                        e.preventDefault(), loadWrap($(this).attr("href"), "onclick 4664");
                                     });
                             }, transTime))));
             }),
@@ -4687,7 +4688,7 @@ $(document).ready(function () {
         });
     history.replaceState(stateData, pageName, currentState);
     if (currentState.indexOf("#") > -1)
-        loadWrap(currentState);
+        loadWrap(currentState, "ready callback 4691");
     else
         initialize(currentState);
     constant();
@@ -4711,8 +4712,11 @@ $(document).ready(function () {
         "popstate",
         function (e) {
             if (e.state) {
+                debugger;
                 var t = e.state.path;
-                isPopState || -1 !== t.indexOf("?s=") ? null !== e.state && (window.location = t) : (e.preventDefault(), (isPopState = !0), null !== e.state && loadWrap(t), console.log("popstate", t));
+                isPopState || -1 !== t.indexOf("?s=") ? null !== e.state
+                    && (window.location = t) : (e.preventDefault(), (isPopState = !0), null !== e.state
+                        && loadWrap(t, "popstate 4716"), console.log("popstate", t));
             }
         },
         {
