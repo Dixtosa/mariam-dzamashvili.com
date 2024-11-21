@@ -1031,7 +1031,7 @@ header.main-header {
 header.main-header::before {
     content: '';
     display: block;
-    
+    background-color: white;
     position: absolute;
     top: 0;
     left: 0;
@@ -1041,6 +1041,9 @@ header.main-header::before {
     z-index: -1;
     will-change: auto;
     transition: all 0s linear
+}
+.main-header.opaque h1 {
+    color:black;
 }
 
 body[data-loading="false"] header.main-header.opaque::before {
@@ -1402,7 +1405,7 @@ body[data-loading="false"] header.opaque .menu-button:focus {
         transition: all .4s ease-in-out
     }
 
-    /*
+    
     body:not(.touchscreen).hide-header:not(.menu-open):not(.search-open) header.main-header.opaque,
     body:not(.touchscreen).hide-header:not(.menu-open):not(.search-open).subnav-fixed:not(.subnav-fixed-bottom) .subnav {
         -webkit-transform: translateY(-5rem);
@@ -1417,7 +1420,7 @@ body[data-loading="false"] header.opaque .menu-button:focus {
         will-change: auto;
         transition: all .2s ease-in-out
     }
-    */
+    
 }
 
 menu.main-menu {

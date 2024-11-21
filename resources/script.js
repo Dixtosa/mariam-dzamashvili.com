@@ -62,6 +62,7 @@ function loadVideo(e) {
     }
 }
 function constant() {
+    
     if (scrollPos === window.pageYOffset || repositioning) return scroll(constant), !1;
     if (
         (!modalInit &&
@@ -73,9 +74,14 @@ function constant() {
             $body.is('[data-loading="true"]'))
     )
         $header.removeClass("opaque");
-    else if (modalInit) $header.addClass("opaque");
-    else if ($("#content > *:first-child").is(".hero"))
+    else if (modalInit) {
+        debugger
+        $header.addClass("opaque");
+    }
+    else if ($("#content > *:first-child").is(".hero")){
+        debugger;
         if (0 !== heroHeight) {
+            
             if (
                 (($("#project-hero").length && scrollPos >= heroHeight - headerHeight) || ($("#home-hero").length && scrollPos >= heroHeight - headerHeight) || scrollPos >= heroHeight - headerHeight
                     ? $header.addClass("opaque")
@@ -86,7 +92,11 @@ function constant() {
                 $("#hero-image img").css("opacity", e.toFixed(2));
             }
         } else $header.removeClass("opaque");
-    else $header.addClass("opaque");
+    }
+    else {
+        debugger;
+        $header.addClass("opaque");
+    }
     $("#page-hero").length && $("#section-toggle").length
         ? scrollPos >= subnavPos
             ? ($body.addClass("subnav-fixed").removeClass("subnav-fixed-bottom"), $("#section-toggle button.active").length || $("#section-toggle button:first").addClass("active"))
