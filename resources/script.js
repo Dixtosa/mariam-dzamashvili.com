@@ -852,8 +852,8 @@ function loadWrap(projectPath, calledFrom) {
                             .done(function (t) {
                                 $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
 
-                                (pageName = $("#content").attr("data-pagename"));
-                                (document.title = pageName);
+                                (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
+                                document.title = pageName;
                                 (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
                                 isPopState
                                     ? (isPopState = !1)
@@ -873,6 +873,7 @@ function loadWrap(projectPath, calledFrom) {
                             });
                     else {
                         //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
+                        document.title = websiteTitleDefault;
                         currentState = "/";
                         isPopState
                             ? (isPopState = !1)
@@ -4561,6 +4562,8 @@ var $htmlBody = $("html,body"),
     $sectionViews = $("#section-views"),
     $projectsGrid = $("#projects-grid"),
     $projects,
+    websiteTitleProjectViewPrefix = "Team4 - ",
+    websiteTitleDefault = "Team4 Design Studio",
     homeURL = $('meta[name="variable-home-url"]').attr("content"),
     projectViewTemplate = "projects/project-view-template.html",
     projectsGridTemplate = "/projects/projects-grid-template.html",
@@ -4689,6 +4692,7 @@ $(document).ready(function () {
     else
         initialize(currentState);
     constant();
+    document.title = websiteTitleDefault;
 }),
     $(window).bind("load", function () {
         $body.removeClass("first-load"),
