@@ -15,6 +15,7 @@
     <link rel="preload" href="resources/script.js" as="script" />
     <link rel="preload" href="resources/jquery.js" as="script" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+    <link rel="icon" href="/i/favicon.ico" />
     <style id='classic-theme-styles-inline-css' type='text/css'>
         /*! This file is auto-generated */
         .wp-block-button__link {
@@ -459,28 +460,30 @@
             </li>
         </ul>
     </menu>
-    
+    <div>
+        <template id="homepage-project-template">
+            <div class="fullscreen">
+                <a href="#/projects/{{category}}/{{name}}/" class="fixed-wrap fixed" data-clear-cookies>
+                    <div class="slide-image object-cover">
+                        <img class="landscape-image" alt="{{name}}" data-sizes="auto"
+                            src="projects/images/{{category}}/{{name}}/main.webp" />
+                    </div>
+                    <div class="slide-text over-image">
+                        <div class="wrap text-wrap align-center">
+                            <h1 class="widont balance-text">{{name}}</h1>
+                            <button tabindex="-1">მაჩვენე მეტი</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </template>
+    </div>
+
     <div class="content-wrap" id="content-wrap">
         <div class="content" id="content" data-pagename="Lorem Ipsum.">
 
             <section class="hero home-hero offblack-bg white-text" id="home-hero">
 
-                <template id="homepage-project-template">
-                    <div class="fullscreen">
-                        <a href="#/projects/{{category}}/{{name}}/" class="fixed-wrap fixed" data-clear-cookies>
-                            <div class="slide-image object-cover">
-                                <img class="landscape-image" alt="{{name}}" data-sizes="auto"
-                                    src="projects/images/{{category}}/{{name}}/main.webp" />
-                            </div>
-                            <div class="slide-text over-image">
-                                <div class="wrap text-wrap align-center">
-                                    <h1 class="widont balance-text">{{name}}</h1>
-                                    <button tabindex="-1">მაჩვენე მეტი</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </template>
             </section>
             
             <div class="safari-fix" id="safari-fix"></div>
