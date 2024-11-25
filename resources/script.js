@@ -1,3 +1,4 @@
+//uses slick.js
 "use strict";
 function responsive(e) {
     modalInit || (scrollPos = -1),
