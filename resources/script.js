@@ -866,7 +866,8 @@ function loadWrap(projectPath, calledFrom) {
 
                                 pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
                                 analyticsID && gaTrack(currentState, pageName);
-                                (attempts = 0);
+                                attempts = 0;
+                                $body.addClass("project-view");
                             })
                             .fail(function (t, i) {
                                 ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
