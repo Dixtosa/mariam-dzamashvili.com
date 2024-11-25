@@ -5157,9 +5157,14 @@ body .is-layout-grid>* {
 
 
 
-body.project-view button.menu-button {
+body.project-view-inprogress .header-logo,
+body.project-view-inprogress button.menu-button,
+body.project-view-done button.menu-button 
+{
     display: none;
 }
+
+
 .menu-button {
     position: absolute;
     top: 0;
@@ -5181,7 +5186,17 @@ body.project-view button.menu-button {
     transition: all .4s ease-in-out
 }
 
-body.project-view .close-project-view-button {
+.close-project-view-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.6rem 3rem 2.3rem;
+    display: none;
+    border: 0;
+    opacity: 0;
+}
+
+body.project-view-done .close-project-view-button {
     position: absolute;
     top: 0;
     right: 0;
@@ -5190,9 +5205,10 @@ body.project-view .close-project-view-button {
     cursor: pointer;
     border: 0;
     will-change: auto;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.8s ease-in-out;
+    opacity: 1;
 }
-body.project-view .close-project-view-button i {
+body.project-view-done .close-project-view-button i {
     display: block;
     width: 2.1rem;
     height: 1px;
@@ -5207,8 +5223,9 @@ body.project-view .close-project-view-button i {
     backface-visibility: hidden;
     margin-top: 8px;
     background-color: white;
+    transition: all 0.8s ease-in-out;
 }
-body.project-view .close-project-view-button i:nth-child(2) {
+body.project-view-done .close-project-view-button i:nth-child(2) {
     -webkit-transform: rotate(-135deg) translate3d(0, 0, 0);
     -moz-transform: rotate(-135deg) translate3d(0, 0, 0);
     -ms-transform: rotate(-135deg) translate3d(0, 0, 0);
@@ -5221,10 +5238,6 @@ body.project-view .close-project-view-button i:nth-child(2) {
     margin-top: -1px;
 }
 
-body.project-view .close-project-view-button i:nth-child(3) {
-    opacity: 0;
-    transition: all 0.6s ease-in-out;
-}
 
 .menu-button i+i {
     margin-top: 7px

@@ -62,7 +62,7 @@ function loadVideo(e) {
     }
 }
 function constant() {
-
+    console.log("lastScrollPos = " + lastScrollPos)
     if (scrollPos === window.pageYOffset || repositioning) return scroll(constant), !1;
     if (
         (!modalInit &&
@@ -72,9 +72,9 @@ function constant() {
                 scrollInterval % 10 == 0 && (scrollPos >= lastScrollPos ? $body.addClass("hide-header") : repositioning || $body.removeClass("hide-header"), (lastScrollPos = scrollPos))),
             $body.is('[data-loading="true"]') ? $("#header-logo").addClass("ok") : $("#home-hero").length && scrollPos < winHeight - headerHeight / 2 ? $("#header-logo").removeClass("ok") : $("#header-logo").addClass("ok"),
             $body.is('[data-loading="true"]'))
-    )
+    ) {
         $header.removeClass("opaque");
-    else if (modalInit) {
+    } else if (modalInit) {
         $header.addClass("opaque");
     }
     else if ($("#content > *:first-child").is(".hero")) {
@@ -111,9 +111,10 @@ function constant() {
             ($(this).parents(".section-view").length && !$(this).parents(".section-view").is(".show")) ||
                 ($(this).parents(".slideshow").length && !$(this).parents(".slick-slide").is(".slick-active")) ||
                 ((secTopPos = $(this).offset().top), (secHeight = $(this).innerHeight()), (secBot = secTopPos + secHeight), scrollPos >= secTopPos - 1.5 * winHeight && scrollPos <= secBot && loadVideo($(this)));
-        }),
-        scroll(constant);
+        });
+    //scroll(constant);
 }
+
 function anchorHook() {
     $("a")
         .each(function () {
@@ -303,7 +304,10 @@ function initSlideshows() {
                                     scrollPos >= e &&
                                     ((repositioning = !0),
                                         setTimeout(function () {
-                                            (scrollPos = e), (lastScrollPos = e), $body.addClass("hide-header"), (repositioning = !1);
+                                            (scrollPos = e);
+                                            (lastScrollPos = e);
+                                            $body.addClass("hide-header");
+                                            (repositioning = !1);
                                         }, transTime)),
                                     $htmlBody.stop().animate(
                                         {
@@ -365,8 +369,10 @@ function initSlideshows() {
                                         });
                             }
                         })));
-    }),
-        responsive(!1);
+    });
+    responsive(!1);
+    $body.removeClass("project-view-inprogress");
+    $body.addClass("project-view-done");
 }
 function initialize(someUrl, calledFrom) {
     if (
@@ -455,7 +461,7 @@ function initialize(someUrl, calledFrom) {
                                 $(".section-view:nth-child(" + o + ")")
                                     .fadeIn(transTime / 2)
                                     .addClass("show"),
-                                    $(".slideshow").length && initSlideshows(),
+                                    isProjectView() && $(".slideshow").length && initSlideshows(),
                                     $("#page-hero").length &&
                                     ((window.location.hash = $(".section-view:nth-child(" + o + ")").attr("id")),
                                         (stateData = {
@@ -551,8 +557,8 @@ function initialize(someUrl, calledFrom) {
         $body.attr("data-loading", "false"),
         objectFitImages(),
         responsive(!0),
-        setupSlideshows(),
-        $(".slideshow").length && initSlideshows(),
+        isProjectView() && setupSlideshows(),
+        isProjectView() && $(".slideshow").length && initSlideshows(),
         $(".caption-icon").on("click", function () {
             $(this).prev(".caption").toggleClass("show");
         }),
@@ -569,13 +575,14 @@ function initialize(someUrl, calledFrom) {
             (targetHash = window.location.hash) || (targetHash = "#" + someUrl.split("#")[1]);
             targetHash.indexOf("?") > -1 && (targetHash = targetHash.split("?")[0]);
             if (targetHash.indexOf("/") == -1) {
-                (targetAnchor = $(targetHash)).length &&
-                    !targetAnchor.is(".section-view") &&
-
-                    ($(document).scrollTop(targetAnchor.offset().top),
-                        (lastScrollPos = targetAnchor.offset().top), $body.addClass("hide-header"),
-                        (scrollPos = subnavPos),
-                        (lastScrollPos = subnavPos));
+                targetAnchor = $(targetHash);
+                if (targetAnchor.length && !targetAnchor.is(".section-view")) {
+                    $(document).scrollTop(targetAnchor.offset().top);
+                    (lastScrollPos = targetAnchor.offset().top);
+                    $body.addClass("hide-header");
+                    (scrollPos = subnavPos);
+                    (lastScrollPos = subnavPos);
+                }
             }
         }
 
@@ -818,6 +825,7 @@ function loadWrap(projectPath, calledFrom) {
     var projectName = null;
     if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
+        $body.addClass("project-view-inprogress");
     }
 
     $contentWrap.focus(),
@@ -847,7 +855,7 @@ function loadWrap(projectPath, calledFrom) {
                     $htmlBody.scrollTop(0);
                     (scrollPos = -1);
                     (checkedElems = !1);
-                    if (projectName)
+                    if (projectName) {
                         $.ajax(projectViewTemplate)
                             .done(function (t) {
                                 $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
@@ -867,11 +875,11 @@ function loadWrap(projectPath, calledFrom) {
                                 pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
                                 analyticsID && gaTrack(currentState, pageName);
                                 attempts = 0;
-                                $body.addClass("project-view");
                             })
                             .fail(function (t, i) {
                                 ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
                             });
+                    }
                     else {
                         //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
                         document.title = websiteTitleDefault;
@@ -4563,6 +4571,7 @@ var $htmlBody = $("html,body"),
     $sectionViews = $("#section-views"),
     $projectsGrid = $("#projects-grid"),
     $projects,
+    isProjectView = () => window.location.href.indexOf("#/projects/") >= 0,
     websiteTitleProjectViewPrefix = "Team4 - ",
     websiteTitleDefault = "Team4 Design Studio",
     homeURL = $('meta[name="variable-home-url"]').attr("content"),
@@ -4692,7 +4701,7 @@ $(document).ready(function () {
         loadWrap(currentState, "ready callback 4691");
     else
         initialize(currentState);
-    constant();
+    constant("document.ready");
     document.title = websiteTitleDefault;
 }),
     $(window).bind("load", function () {
@@ -4714,10 +4723,8 @@ $(document).ready(function () {
         "popstate",
         function (e) {
             if (e.state) {
-                debugger;
                 var t = e.state.path;
-                if (e.state.path == location.href)
-                {
+                if (e.state.path == location.href) {
                     this.location.reload();
                 }
                 isPopState || -1 !== t.indexOf("?s=") ? null !== e.state
