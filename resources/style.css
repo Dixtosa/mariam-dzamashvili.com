@@ -3129,6 +3129,11 @@ body>.fullscreen button,
     right: 0
 }
 
+.slick-arrow,
+body.project-view-inprogress .slideshow .slick-dots {
+    visibility: hidden;
+}
+
 .slideshow .slick-dots {
     position: absolute;
     bottom: 0;

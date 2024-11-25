@@ -371,8 +371,6 @@ function initSlideshows() {
                         })));
     });
     responsive(!1);
-    $body.removeClass("project-view-inprogress");
-    $body.addClass("project-view-done");
 }
 function initialize(someUrl, calledFrom) {
     if (
@@ -416,12 +414,14 @@ function initialize(someUrl, calledFrom) {
                             $("#project-hero")
                                 .addClass("fall-in")
                                 .height(winHeight - subnavHeight);
-                    }, transTime))
+                    }, 1 * transTime))
                 : setTimeout(function () {
-                    responsive(!0),
-                        $("#project-hero")
-                            .addClass("fall-in")
-                            .height(winHeight - subnavHeight);
+                    responsive(!0);
+                    $("#project-hero")
+                        .addClass("fall-in")
+                        .height(winHeight - subnavHeight);
+                    $body.removeClass("project-view-inprogress");
+                    $body.addClass("project-view-done")
                 }, 4 * transTime),
                 setTimeout(function () {
                     $("#project-hero").addClass("fell-in"), $body.is(".touchscreen") || $("#project-hero .slick-active button").focus(), $("#project-hero .slide-text").remove();
@@ -828,71 +828,74 @@ function loadWrap(projectPath, calledFrom) {
         $body.addClass("project-view-inprogress");
     }
 
-    $contentWrap.focus(),
+    $contentWrap.focus();
+    if (
         "Win16" === platform ||
-            "Windows 95" === platform ||
-            "Win95" === platform ||
-            "Windows_95" === platform ||
-            "Windows 98" === platform ||
-            "Win98" === platform ||
-            "Windows NT 5.0" === platform ||
-            "Windows 2000" === platform ||
-            "Windows NT 5.1" === platform ||
-            "Windows XP" === platform ||
-            "Windows NT 5.2" === platform
-            ? (window.location.href = projectPath)
-            : ($body.removeClass("hide-header").attr("data-loading", "true"),
-                $(".admin-edit").length && $(".admin-edit").fadeOut(transTime),
-                $contentWrap.fadeOut(transTime),
-                $header.removeClass("opaque"),
-                menuOpen && closeMenu(),
-                searchOpen && closeSearch(),
-                closeModal(),
-                setTimeout(function () {
-                    $body.removeClass("subnav-fixed-bottom subnav-fixed");
-                    $("#project-hero").removeClass("fall-in");
-                    $(".admin-edit").length && $(".admin-edit").remove();
-                    $htmlBody.scrollTop(0);
-                    (scrollPos = -1);
-                    (checkedElems = !1);
-                    if (projectName) {
-                        $.ajax(projectViewTemplate)
-                            .done(function (t) {
-                                $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
+        "Windows 95" === platform ||
+        "Win95" === platform ||
+        "Windows_95" === platform ||
+        "Windows 98" === platform ||
+        "Win98" === platform ||
+        "Windows NT 5.0" === platform ||
+        "Windows 2000" === platform ||
+        "Windows NT 5.1" === platform ||
+        "Windows XP" === platform ||
+        "Windows NT 5.2" === platform
+    ) (window.location.href = projectPath)
+    else {
+        $body.removeClass("hide-header").attr("data-loading", "true");
+            $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
+            $contentWrap.fadeOut(transTime);
+            $header.removeClass("opaque");
+            menuOpen && closeMenu();
+            searchOpen && closeSearch();
+            closeModal();
+            setTimeout(function () {
+                $body.removeClass("subnav-fixed-bottom subnav-fixed");
+                $("#project-hero").removeClass("fall-in");
+                $(".admin-edit").length && $(".admin-edit").remove();
+                $htmlBody.scrollTop(0);
+                (scrollPos = -1);
+                (checkedElems = !1);
+                if (projectName) {
+                    $.ajax(projectViewTemplate)
+                        .done(function (t) {
+                            $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
 
-                                (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
-                                document.title = pageName;
-                                (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
-                                isPopState
-                                    ? (isPopState = !1)
-                                    : ((stateData = {
-                                        path: currentState,
-                                        scrollTop: scrollPos,
-                                    }), history.pushState(stateData, pageName, currentState));
+                            (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
+                            document.title = pageName;
+                            (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
+                            isPopState
+                                ? (isPopState = !1)
+                                : ((stateData = {
+                                    path: currentState,
+                                    scrollTop: scrollPos,
+                                }), history.pushState(stateData, pageName, currentState));
 
-                                initialize(currentState, "from loadwrap");
+                            initialize(currentState, "from loadwrap");
 
-                                pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
-                                analyticsID && gaTrack(currentState, pageName);
-                                attempts = 0;
-                            })
-                            .fail(function (t, i) {
-                                ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
-                            });
-                    }
-                    else {
-                        //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
-                        document.title = websiteTitleDefault;
-                        currentState = "/";
-                        isPopState
-                            ? (isPopState = !1)
-                            : ((stateData = {
-                                path: currentState,
-                                scrollTop: scrollPos,
-                            }), history.pushState(stateData, pageName, currentState));
-                        initialize(projectPath, "from loadwrap else");
-                    }
-                }, transTime));
+                            pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
+                            analyticsID && gaTrack(currentState, pageName);
+                            attempts = 0;
+                        })
+                        .fail(function (t, i) {
+                            ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
+                        });
+                }
+                else {
+                    //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
+                    document.title = websiteTitleDefault;
+                    currentState = "/";
+                    isPopState
+                        ? (isPopState = !1)
+                        : ((stateData = {
+                            path: currentState,
+                            scrollTop: scrollPos,
+                        }), history.pushState(stateData, pageName, currentState));
+                    initialize(projectPath, "from loadwrap else");
+                }
+            }, transTime);
+    }
 }
 function gaTracker(e) {
     $.getScript("//www.google-analytics.com/analytics.js"),
