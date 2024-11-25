@@ -234,7 +234,11 @@ function anchorHook() {
         });
 }
 function closeModal(e) {
-    (modalInit = !1), e ? $(e).removeClass("show") : $(".modal").removeClass("show"), clearTimeout(setOpen), $(".modal.show").length || ($body.removeClass("modal-open"), $(document).scrollTop(scrollPos));
+    (modalInit = !1);
+    e ? $(e).removeClass("show") : $(".modal").removeClass("show");
+    clearTimeout(setOpen);
+    $(".modal.show").length || ($body.removeClass("modal-open"));
+    //$(document).scrollTop(scrollPos);
 }
 function openModal(e) {
     (modalInit = !0),
