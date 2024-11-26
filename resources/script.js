@@ -63,7 +63,6 @@ function loadVideo(e) {
     }
 }
 function constant() {
-    console.log("lastScrollPos = " + lastScrollPos)
     if (scrollPos === window.pageYOffset || repositioning) return scroll(constant), !1;
     if (
         (!modalInit &&
@@ -142,6 +141,10 @@ function anchorHook() {
                 return 1;
             }
 
+            if ($(this).is(".slideshow-opener-button")) {
+                localStorage.setItem("last-scroll-pos-before-slideshow", $(window).scrollTop());
+            }
+
             if ($(this).is(".project-type-link")) {
                 e.preventDefault();
                 currentProjectType = $(this).attr("data-project-type");
@@ -158,7 +161,7 @@ function anchorHook() {
                 closeModal();
 
 
-                
+
 
                 setTimeout(() => {
                     $(document).scrollTop(subnavPos - 50)
@@ -406,6 +409,23 @@ function initSlideshows() {
     });
     responsive(!1);
 }
+function goToRememberedScrollPosition() {
+    var lastScrollPosBeforeSlide = localStorage.getItem("last-scroll-pos-before-slideshow");
+    var limit = Math.max(document.body.scrollHeight, document.body.offsetHeight,
+        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    
+    if (lastScrollPosBeforeSlide && limit < lastScrollPosBeforeSlide) {
+        console.log("limit < lastScrollPosBeforeSlide. repeating");
+        setTimeout(goToRememberedScrollPosition, 100);
+        return;
+    }
+    if (lastScrollPosBeforeSlide && !isProjectView()) {
+        localStorage.removeItem("last-scroll-pos-before-slideshow");
+        console.log("lastScrollPosBeforeSlide = " + lastScrollPosBeforeSlide);
+        $(window).scrollTop(parseInt(lastScrollPosBeforeSlide));
+    }
+}
+
 function initialize(someUrl, calledFrom) {
     if (
         (($sectionViews = $("#section-views")),
@@ -4744,6 +4764,8 @@ $(document).ready(function () {
         initialize(currentState);
     constant("document.ready");
     document.title = websiteTitleDefault;
+
+    goToRememberedScrollPosition();
 }),
     $(window).bind("load", function () {
         $body.removeClass("first-load"),
