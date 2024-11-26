@@ -164,6 +164,7 @@ function anchorHook() {
 
 
                 setTimeout(() => {
+                    debugger;
                     $(document).scrollTop(subnavPos - 50)
                 }, 50);
                 //$htmlBody.animate({scrollTop: subnavPos - 50}, 155);
@@ -413,17 +414,19 @@ function goToRememberedScrollPosition() {
     var lastScrollPosBeforeSlide = localStorage.getItem("last-scroll-pos-before-slideshow");
     var limit = Math.max(document.body.scrollHeight, document.body.offsetHeight,
         document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-    
-    if (lastScrollPosBeforeSlide && limit < lastScrollPosBeforeSlide) {
+
+    if (!lastScrollPosBeforeSlide) return;
+    if (isProjectView()) return;
+
+    if (limit < lastScrollPosBeforeSlide) {
         console.log("limit < lastScrollPosBeforeSlide. repeating");
         setTimeout(goToRememberedScrollPosition, 100);
         return;
     }
-    if (lastScrollPosBeforeSlide && !isProjectView()) {
-        localStorage.removeItem("last-scroll-pos-before-slideshow");
-        console.log("lastScrollPosBeforeSlide = " + lastScrollPosBeforeSlide);
-        $(window).scrollTop(parseInt(lastScrollPosBeforeSlide));
-    }
+
+    localStorage.removeItem("last-scroll-pos-before-slideshow");
+    console.log("lastScrollPosBeforeSlide = " + lastScrollPosBeforeSlide);
+    $(window).scrollTop(parseInt(lastScrollPosBeforeSlide));
 }
 
 function initialize(someUrl, calledFrom) {
@@ -534,6 +537,7 @@ function initialize(someUrl, calledFrom) {
                         window.scrollTo(0, 0);
                     }, 1),
                         setTimeout(function () {
+                            debugger;
                             (o = $(window.location.hash).index() + 1), $(document).scrollTop(subnavPos), $("#section-toggle button:nth-child(" + o + ")").trigger("click");
                         }, 2))
                     : $(".section-view:first").show().addClass("show"))
@@ -619,6 +623,7 @@ function initialize(someUrl, calledFrom) {
 
 
     if ($("#home-hero").length && currentProjectType) {
+        debugger;
         $(document).scrollTop(subnavPos - 50); //meh, i know i know
     }
     if ($(".split-section").length)
@@ -635,6 +640,7 @@ function initialize(someUrl, calledFrom) {
             if (targetHash.indexOf("/") == -1) {
                 targetAnchor = $(targetHash);
                 if (targetAnchor.length && !targetAnchor.is(".section-view")) {
+                    debugger;
                     $(document).scrollTop(targetAnchor.offset().top);
                     (lastScrollPos = targetAnchor.offset().top);
                     $body.addClass("hide-header");
@@ -677,6 +683,7 @@ function alignToSubnav() {
         )
         : ((repositioning = !0),
             setTimeout(function () {
+                debugger;
                 $body.addClass("hide-header"), $(document).scrollTop(subnavPos + 1);
             }, transTime / 2 + 1),
             setTimeout(function () {
@@ -934,6 +941,7 @@ function loadWrap(projectPath, calledFrom) {
                         pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
                         analyticsID && gaTrack(currentState, pageName);
                         attempts = 0;
+                        $(document).scrollTop(0);
                     })
                     .fail(function (t, i) {
                         ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
@@ -2449,6 +2457,7 @@ var objectFitImages = (function () {
                     }),
                     (o.prototype.search_results_mousewheel = function (e) {
                         var t;
+                        debugger;
                         if ((e.originalEvent && (t = e.originalEvent.deltaY || -e.originalEvent.wheelDelta || e.originalEvent.detail), null != t))
                             return e.preventDefault(), "DOMMouseScroll" === e.type && (t *= 40), this.search_results.scrollTop(t + this.search_results.scrollTop());
                     }),
@@ -2500,6 +2509,7 @@ var objectFitImages = (function () {
                     (o.prototype.result_do_highlight = function (e) {
                         var t, i, s, o, n;
                         if (e.length) {
+                            debugger;
                             if (
                                 (this.result_clear_highlight(),
                                     (this.result_highlight = e),
