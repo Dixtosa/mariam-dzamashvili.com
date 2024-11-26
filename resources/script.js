@@ -145,18 +145,29 @@ function anchorHook() {
             if ($(this).is(".project-type-link")) {
                 e.preventDefault();
                 currentProjectType = $(this).attr("data-project-type");
+                $("#project-filters select").val(currentProjectType);
+                $("#project-filters select").trigger("change");
+                $("#project-filters select").trigger("chosen:updated");
 
                 $body.removeClass("hide-header").attr("data-loading", "true");
                 $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
-                $contentWrap.fadeOut(transTime);
+                //$contentWrap.fadeOut(transTime);
                 $header.removeClass("opaque");
                 menuOpen && closeMenu();
                 searchOpen && closeSearch();
                 closeModal();
 
-                initialize(null, "from anchor 152");
 
-                return;
+                
+
+                setTimeout(() => {
+                    $(document).scrollTop(subnavPos - 50)
+                }, 50);
+                //$htmlBody.animate({scrollTop: subnavPos - 50}, 155);
+
+                //initialize(null, "from anchor 152");
+
+                return 0;
             }
 
             if (($(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
@@ -587,9 +598,7 @@ function initialize(someUrl, calledFrom) {
         });
 
 
-    if ($("#home-hero").length && currentProjectType)
-    {
-        debugger;
+    if ($("#home-hero").length && currentProjectType) {
         $(document).scrollTop(subnavPos - 50); //meh, i know i know
     }
     if ($(".split-section").length)
@@ -728,11 +737,11 @@ function initProjects() {
             $("#project-filters").toggleClass("show");
         });
 
-        if (currentProjectType) {
-            $("#project-filters select").val(currentProjectType);
-            $("#project-filters select").trigger("change");
-            $("#project-filters select").trigger("chosen:updated");
-        }
+        //if (currentProjectType) {
+        //$("#project-filters select").val(currentProjectType);
+        //$("#project-filters select").trigger("change");
+        //$("#project-filters select").trigger("chosen:updated");
+        //}
     });
 }
 function sortProjects(e) {
