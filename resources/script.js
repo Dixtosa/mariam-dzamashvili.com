@@ -929,12 +929,16 @@ function loadWrap(projectPath, calledFrom) {
                         (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
                         document.title = pageName;
                         (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
-                        isPopState
-                            ? (isPopState = !1)
-                            : ((stateData = {
+                        
+                        if (isPopState)
+                            (isPopState = !1);
+                        else{
+                            (stateData = {
                                 path: currentState,
                                 scrollTop: scrollPos,
-                            }), history.pushState(stateData, pageName, currentState));
+                            });
+                            //history.pushState(stateData, pageName, currentState);
+                        }
 
                         initialize(currentState, "from loadwrap");
 
