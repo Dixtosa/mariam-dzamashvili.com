@@ -113,7 +113,8 @@ function constant() {
                 ($(this).parents(".slideshow").length && !$(this).parents(".slick-slide").is(".slick-active")) ||
                 ((secTopPos = $(this).offset().top), (secHeight = $(this).innerHeight()), (secBot = secTopPos + secHeight), scrollPos >= secTopPos - 1.5 * winHeight && scrollPos <= secBot && loadVideo($(this)));
         });
-    //scroll(constant);
+
+    scroll(constant);
 }
 
 function anchorHook() {
@@ -141,7 +142,24 @@ function anchorHook() {
                 return 1;
             }
 
-            if ((e.preventDefault(), $(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
+            if ($(this).is(".project-type-link")) {
+                e.preventDefault();
+                currentProjectType = $(this).attr("data-project-type");
+
+                $body.removeClass("hide-header").attr("data-loading", "true");
+                $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
+                $contentWrap.fadeOut(transTime);
+                $header.removeClass("opaque");
+                menuOpen && closeMenu();
+                searchOpen && closeSearch();
+                closeModal();
+
+                initialize(null, "from anchor 152");
+
+                return;
+            }
+
+            if (($(this).is("[data-clear-cookies]") && clearCookies(), clickedItemHref.indexOf(".jpg") > -1 || clickedItemHref.indexOf(".jpeg") > -1 || clickedItemHref.indexOf(".png") > -1 || clickedItemHref.indexOf(".gif") > -1)) {
                 var s;
                 (s = $(this).is("[data-image-index]")
                     ? $('#modal-slideshow [data-slide-index="' + $(this).attr("data-image-index") + '"]')
@@ -566,9 +584,15 @@ function initialize(someUrl, calledFrom) {
         isProjectView() && $(".slideshow").length && initSlideshows(),
         $(".caption-icon").on("click", function () {
             $(this).prev(".caption").toggleClass("show");
-        }),
-        $("#home-hero").length && (someUrl.indexOf("?type=") > -1 || someUrl.indexOf("?designer=") > -1 || someUrl.indexOf("?region=") > -1 || someUrl.indexOf("?sort=") > -1) && $(document).scrollTop(subnavPos),
-        $(".split-section").length &&
+        });
+
+
+    if ($("#home-hero").length && currentProjectType)
+    {
+        debugger;
+        $(document).scrollTop(subnavPos - 50); //meh, i know i know
+    }
+    if ($(".split-section").length)
         setTimeout(function () {
             $(window).trigger("resize");
         }, 2 * transTime);
@@ -704,10 +728,8 @@ function initProjects() {
             $("#project-filters").toggleClass("show");
         });
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const projectType = urlParams.get('type');
-        if (projectType) {
-            $("#project-filters select").val(projectType);
+        if (currentProjectType) {
+            $("#project-filters select").val(currentProjectType);
             $("#project-filters select").trigger("change");
             $("#project-filters select").trigger("chosen:updated");
         }
@@ -827,6 +849,7 @@ function renderTemplate(html, data) {
 }
 
 function loadWrap(projectPath, calledFrom) {
+
     var projectName = null;
     if (projectPath.indexOf("/projects/") > -1) {
         projectName = decodeURIComponent(projectPath.split("/").filter(_ => _).slice(-1));
@@ -849,57 +872,57 @@ function loadWrap(projectPath, calledFrom) {
     ) (window.location.href = projectPath)
     else {
         $body.removeClass("hide-header").attr("data-loading", "true");
-            $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
-            $contentWrap.fadeOut(transTime);
-            $header.removeClass("opaque");
-            menuOpen && closeMenu();
-            searchOpen && closeSearch();
-            closeModal();
-            setTimeout(function () {
-                $body.removeClass("subnav-fixed-bottom subnav-fixed");
-                $("#project-hero").removeClass("fall-in");
-                $(".admin-edit").length && $(".admin-edit").remove();
-                $htmlBody.scrollTop(0);
-                (scrollPos = -1);
-                (checkedElems = !1);
-                if (projectName) {
-                    $.ajax(projectViewTemplate)
-                        .done(function (t) {
-                            $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
+        $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
+        $contentWrap.fadeOut(transTime);
+        $header.removeClass("opaque");
+        menuOpen && closeMenu();
+        searchOpen && closeSearch();
+        closeModal();
+        setTimeout(function () {
+            $body.removeClass("subnav-fixed-bottom subnav-fixed");
+            $("#project-hero").removeClass("fall-in");
+            $(".admin-edit").length && $(".admin-edit").remove();
+            $htmlBody.scrollTop(0);
+            (scrollPos = -1);
+            (checkedElems = !1);
+            if (projectName) {
+                $.ajax(projectViewTemplate)
+                    .done(function (t) {
+                        $contentWrap.html(renderTemplate($(t).find("#content"), projectData[projectName]));
 
-                            (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
-                            document.title = pageName;
-                            (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
-                            isPopState
-                                ? (isPopState = !1)
-                                : ((stateData = {
-                                    path: currentState,
-                                    scrollTop: scrollPos,
-                                }), history.pushState(stateData, pageName, currentState));
+                        (pageName = websiteTitleProjectViewPrefix + $("#content").attr("data-pagename"));
+                        document.title = pageName;
+                        (currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath);
+                        isPopState
+                            ? (isPopState = !1)
+                            : ((stateData = {
+                                path: currentState,
+                                scrollTop: scrollPos,
+                            }), history.pushState(stateData, pageName, currentState));
 
-                            initialize(currentState, "from loadwrap");
+                        initialize(currentState, "from loadwrap");
 
-                            pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
-                            analyticsID && gaTrack(currentState, pageName);
-                            attempts = 0;
-                        })
-                        .fail(function (t, i) {
-                            ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
-                        });
-                }
-                else {
-                    //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
-                    document.title = websiteTitleDefault;
-                    currentState = "/";
-                    isPopState
-                        ? (isPopState = !1)
-                        : ((stateData = {
-                            path: currentState,
-                            scrollTop: scrollPos,
-                        }), history.pushState(stateData, pageName, currentState));
-                    initialize(projectPath, "from loadwrap else");
-                }
-            }, transTime);
+                        pageName && pageName.indexOf("—") > -1 && (pageName = pageName.split(" — ")[1]);
+                        analyticsID && gaTrack(currentState, pageName);
+                        attempts = 0;
+                    })
+                    .fail(function (t, i) {
+                        ++attempts < 7 ? setTimeout(loadWrap(projectPath), 1e3) : (openModal("#error-modal"), $header.addClass("opaque"));
+                    });
+            }
+            else {
+                //currentState = $("#content").is("[data-url]") ? $("#content").attr("data-url") : projectPath;
+                document.title = websiteTitleDefault;
+                currentState = projectPath;
+                isPopState
+                    ? (isPopState = !1)
+                    : ((stateData = {
+                        path: currentState,
+                        scrollTop: scrollPos,
+                    }), history.pushState(stateData, pageName, currentState));
+                initialize(projectPath, "from loadwrap else");
+            }
+        }, transTime);
     }
 }
 function gaTracker(e) {
@@ -4614,6 +4637,7 @@ var $htmlBody = $("html,body"),
     attempts = 0,
     isPopState = !1,
     currentState = window.location.href,
+    currentProjectType = undefined,
     i,
     itemCount,
     filterName,

@@ -1042,8 +1042,9 @@ header.main-header::before {
     will-change: auto;
     transition: all 0s linear
 }
+
 .main-header.opaque h1 {
-    color:black;
+    color: black;
 }
 
 body[data-loading="false"] header.main-header.opaque::before {
@@ -1325,7 +1326,7 @@ body[data-loading="false"] header.opaque .search-button:focus {
         transition: all .4s ease-in-out
     }
 
-    
+
     body:not(.touchscreen).hide-header:not(.menu-open):not(.search-open) header.main-header.opaque,
     body:not(.touchscreen).hide-header:not(.menu-open):not(.search-open).subnav-fixed:not(.subnav-fixed-bottom) .subnav {
         -webkit-transform: translateY(-5rem);
@@ -1340,7 +1341,7 @@ body[data-loading="false"] header.opaque .search-button:focus {
         will-change: auto;
         transition: all .2s ease-in-out
     }
-    
+
 }
 
 menu.main-menu {
@@ -5158,14 +5159,14 @@ body .is-layout-grid>* {
     font-size: 1.5em;
     line-height: 1.6;
 }
+
 /*from index.html END*/
 
 
 
 body.project-view-inprogress .header-logo,
 body.project-view-inprogress button.menu-button,
-body.project-view-done button.menu-button 
-{
+body.project-view-done button.menu-button {
     display: none;
 }
 
@@ -5213,6 +5214,7 @@ body.project-view-done .close-project-view-button {
     transition: all 0.8s ease-in-out;
     opacity: 1;
 }
+
 body.project-view-done .close-project-view-button i {
     display: block;
     width: 2.1rem;
@@ -5230,6 +5232,7 @@ body.project-view-done .close-project-view-button i {
     background-color: white;
     transition: all 0.8s ease-in-out;
 }
+
 body.project-view-done .close-project-view-button i:nth-child(2) {
     -webkit-transform: rotate(-135deg) translate3d(0, 0, 0);
     -moz-transform: rotate(-135deg) translate3d(0, 0, 0);
@@ -5289,8 +5292,7 @@ body.menu-open .menu-button i+i+i {
 
 body.menu-open .menu-button i,
 body.search-open .menu-button i,
-body[data-loading="false"] header.opaque .menu-button i 
-{
+body[data-loading="false"] header.opaque .menu-button i {
     /*background-color: #121212*/
     background-color: white;
 }
@@ -5298,8 +5300,7 @@ body[data-loading="false"] header.opaque .menu-button i
 
 body.menu-open .menu-button i:nth-child(3),
 body.search-open .menu-button i:nth-child(3),
-body[data-loading="false"] header.opaque .menu-button i:nth-child(3)
-{
+body[data-loading="false"] header.opaque .menu-button i:nth-child(3) {
     opacity: 0;
     transition: all 0.6s ease-in-out;
 }
@@ -5314,3 +5315,7 @@ body[data-loading="false"] header.opaque .menu-button:focus {
     background-color: rgba(18, 18, 18, 0.25)
 }
 
+.project-type-link {
+    font-size: medium;
+    padding-left: 20;
+}
