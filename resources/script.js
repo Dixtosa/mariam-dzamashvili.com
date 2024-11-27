@@ -152,7 +152,7 @@ function anchorHook() {
                 $("#project-filters select").trigger("change");
                 $("#project-filters select").trigger("chosen:updated");
 
-                $body.removeClass("hide-header").attr("data-loading", "true");
+                $body.removeClass("hide-header");
                 $(".admin-edit").length && $(".admin-edit").fadeOut(transTime);
                 //$contentWrap.fadeOut(transTime);
                 $header.removeClass("opaque");

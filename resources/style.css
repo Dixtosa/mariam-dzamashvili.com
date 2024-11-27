@@ -1372,7 +1372,7 @@ menu.main-menu {
 menu.main-menu .site-menu h6,
 menu.main-menu .site-menu li {
     font-size: 1.15rem;
-    line-height: 1.4
+    line-height: 1.4;
 }
 
 menu.main-menu .site-menu h6,
@@ -1391,9 +1391,11 @@ menu.main-menu a {
     color: floralwhite;
 }
 
+
 menu.main-menu a:focus,
 menu.main-menu a:hover {
-    color: #ea0000
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 body.menu-open menu.main-menu {
@@ -1402,23 +1404,12 @@ body.menu-open menu.main-menu {
     transition-delay: 0s
 }
 
-@media only screen and (max-width: 699px) {
+
+
+@media only screen and (min-width: 0px) {
     menu.main-menu {
-        padding: 5rem 3rem 3rem
-    }
-
-    menu.main-menu .site-menu>li {
-        display: block
-    }
-
-    menu.main-menu .site-menu>li+li {
-        margin-top: 1.6rem
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    menu.main-menu {
-        padding: 5rem 1.5rem 3rem
+        padding: 5rem 1.5rem 3rem;
+        overflow-x: hidden;
     }
 
     menu.main-menu[data-height="mid"] {
@@ -1433,18 +1424,17 @@ body.menu-open menu.main-menu {
         width: 100%;
         letter-spacing: -0.31em;
         text-rendering: optimizeLegibility;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 65%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0.5) 100%) !important;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 70%, rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0.8) 100%);
     }
 
     menu.main-menu .site-menu>li {
         letter-spacing: normal;
         display: -moz-inline-stack;
-        display: inline-block;
         zoom: 1;
-        *display: inline;
         vertical-align: top;
-        width: 20%;
-        padding: 0 1.5rem
+        width: 150px;
+        padding-bottom: 10px;
+        float: right;
     }
 }
 
