@@ -14,7 +14,7 @@
     <link rel="preload" href="resources/style.css?v=11-27-2024" as="style" />
     <link rel='stylesheet' id='ok-civ-css' href='resources/style.css?v=11-27-2024' type='text/css' media='all' />
     <link rel="preload" href="resources/script.js?v=11-27-2024" as="script" />
-    <link rel="preload" href="resources/jquery.js" as="script" />
+    <link rel="preload" href="https://code.jquery.com/jquery-3.2.1.min.js" as="script" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
     <link rel="icon" href="/i/favicon.ico" />
 
@@ -84,10 +84,12 @@
                         <a href="" data-project-type="apartment" class="project-type-link" data-clear-cookies>ბინა</a>
                     </li>
                     <li>
-                        <a href="" data-project-type="private-house" class="project-type-link" data-clear-cookies>სახლი</a>
+                        <a href="" data-project-type="private-house" class="project-type-link"
+                            data-clear-cookies>სახლი</a>
                     </li>
                     <li>
-                        <a href="" data-project-type="commercial" class="project-type-link" data-clear-cookies>კომერციული</a>
+                        <a href="" data-project-type="commercial" class="project-type-link"
+                            data-clear-cookies>კომერციული</a>
                     </li>
                 </ul>
                 <h6>
@@ -99,7 +101,8 @@
     <div>
         <template id="homepage-project-template">
             <div class="fullscreen">
-                <a href="#/projects/{{category}}/{{name}}/" class="fixed-wrap fixed slideshow-opener-button" data-clear-cookies>
+                <a href="#/projects/{{category}}/{{name}}/" class="fixed-wrap fixed slideshow-opener-button"
+                    data-clear-cookies>
                     <div class="slide-image object-cover">
                         <img class="landscape-image" alt="{{name}}" data-sizes="auto"
                             src="projects/images/{{category}}/{{name}}/main.webp" />
@@ -232,7 +235,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="resources/jquery.js" id="jquery-js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" id="jquery-js"></script>
     <script src="https://unpkg.com/mustache@latest"></script>
     <script type="text/javascript" src="resources/script.js?v=11-27-2024" id="v2_scripts-js"></script>
     <script type="text/javascript" src="projects/data.js?v=11-27-2024"></script>

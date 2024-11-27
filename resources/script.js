@@ -46,13 +46,13 @@ function responsive(e) {
                 $(".section-view > section:only-of-type").css("min-height", secHeight + "px")),
             $projectsGrid.length &&
             $("#project-filters .select-wrap label").each(function () {
-                if (winWidth >= 1024) {
+                if (winWidth >= 0) {
                     var e = $(this).outerWidth();
                     $(this)
                         .siblings(".chosen-container")
                         .find(".chosen-drop, .chosen-single")
                         .css("padding-left", e + "px");
-                } else $(this).siblings(".chosen-container").find(".chosen-drop, .chosen-single").css("padding-left", "16px");
+                }
             }),
             $("#ok-form").length && (winWidth < breakpoint ? $("#select-wrap").insertBefore("[data-subject]:first") : $("#select-wrap").insertBefore("#message-wrap")));
 }
@@ -164,7 +164,6 @@ function anchorHook() {
 
 
                 setTimeout(() => {
-                    debugger;
                     $(document).scrollTop(subnavPos - 50)
                 }, 50);
                 //$htmlBody.animate({scrollTop: subnavPos - 50}, 155);
@@ -537,7 +536,6 @@ function initialize(someUrl, calledFrom) {
                         window.scrollTo(0, 0);
                     }, 1),
                         setTimeout(function () {
-                            debugger;
                             (o = $(window.location.hash).index() + 1), $(document).scrollTop(subnavPos), $("#section-toggle button:nth-child(" + o + ")").trigger("click");
                         }, 2))
                     : $(".section-view:first").show().addClass("show"))
@@ -623,7 +621,6 @@ function initialize(someUrl, calledFrom) {
 
 
     if ($("#home-hero").length && currentProjectType) {
-        debugger;
         $(document).scrollTop(subnavPos - 50); //meh, i know i know
     }
     if ($(".split-section").length)
@@ -640,7 +637,6 @@ function initialize(someUrl, calledFrom) {
             if (targetHash.indexOf("/") == -1) {
                 targetAnchor = $(targetHash);
                 if (targetAnchor.length && !targetAnchor.is(".section-view")) {
-                    debugger;
                     $(document).scrollTop(targetAnchor.offset().top);
                     (lastScrollPos = targetAnchor.offset().top);
                     $body.addClass("hide-header");
@@ -683,7 +679,6 @@ function alignToSubnav() {
         )
         : ((repositioning = !0),
             setTimeout(function () {
-                debugger;
                 $body.addClass("hide-header"), $(document).scrollTop(subnavPos + 1);
             }, transTime / 2 + 1),
             setTimeout(function () {
@@ -2461,7 +2456,7 @@ var objectFitImages = (function () {
                     }),
                     (o.prototype.search_results_mousewheel = function (e) {
                         var t;
-                        debugger;
+                        //debugger;
                         if ((e.originalEvent && (t = e.originalEvent.deltaY || -e.originalEvent.wheelDelta || e.originalEvent.detail), null != t))
                             return e.preventDefault(), "DOMMouseScroll" === e.type && (t *= 40), this.search_results.scrollTop(t + this.search_results.scrollTop());
                     }),
@@ -2513,7 +2508,7 @@ var objectFitImages = (function () {
                     (o.prototype.result_do_highlight = function (e) {
                         var t, i, s, o, n;
                         if (e.length) {
-                            debugger;
+                            //debugger;
                             if (
                                 (this.result_clear_highlight(),
                                     (this.result_highlight = e),
