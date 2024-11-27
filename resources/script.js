@@ -4700,6 +4700,11 @@ $(document).ready(function () {
     goToRememberedScrollPosition();
 }),
     $(window).bind("load", function () {
+
+        //fullscreen hack?
+        //window.scrollTo(0, 1);
+        //document.addEventListener("touchmove", function(e) { e.preventDefault() });
+
         $body.removeClass("first-load"),
             key("tab", function () {
                 $(document.activeElement).parents("#home-hero").length
