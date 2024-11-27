@@ -4582,7 +4582,7 @@ var objectFitImages = (function () {
                     e[s.exitFullscreen]();
                 },
                 toggle: function (e) {
-                    this.isFullscreen ? this.exit() : this.request(e);
+                    //this.isFullscreen ? this.exit() : this.request(e);
                 },
                 onchange: function (e) {
                     this.on("change", e);
