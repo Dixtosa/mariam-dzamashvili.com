@@ -2439,7 +2439,24 @@ body:not(.touchscreen) .project-filters {
     letter-spacing: normal
 }
 
-
+@media only screen and (max-width: 700px){
+    .project-filters .select-wrap {
+        display: flex;
+        width: 50%;
+        min-width: 200px;
+        border-right: 1px solid;
+        position: relative
+    }
+}
+@media only screen and (min-width: 701px){
+    .project-filters .select-wrap {
+        display: flex;
+        width: 25%;
+        min-width: 200px;
+        border-right: 1px solid;
+        position: relative
+    }
+}
 @media only screen and (min-width: 0px) {
     .project-filters {
         display: -webkit-box;
@@ -2473,14 +2490,6 @@ body:not(.touchscreen) .project-filters {
 
     .project-filters nav+nav {
         flex-basis: 5%
-    }
-
-    .project-filters .select-wrap {
-        display: flex;
-        width: 25%;
-        min-width: 200px;
-        border-right: 1px solid;
-        position: relative
     }
 
     .project-filters .select-wrap label {
