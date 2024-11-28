@@ -2439,7 +2439,7 @@ body:not(.touchscreen) .project-filters {
     letter-spacing: normal
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     .project-filters .select-wrap {
         display: flex;
         width: 50%;
@@ -2448,7 +2448,8 @@ body:not(.touchscreen) .project-filters {
         position: relative
     }
 }
-@media only screen and (min-width: 701px){
+
+@media only screen and (min-width: 701px) {
     .project-filters .select-wrap {
         display: flex;
         width: 25%;
@@ -2457,6 +2458,7 @@ body:not(.touchscreen) .project-filters {
         position: relative
     }
 }
+
 @media only screen and (min-width: 0px) {
     .project-filters {
         display: -webkit-box;
