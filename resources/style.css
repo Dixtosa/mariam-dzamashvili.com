@@ -179,7 +179,7 @@ input[type="radio"] {
 
 input[type="checkbox"] {
     vertical-align: bottom;
-    *vertical-align: baseline
+    
 }
 
 .ie6 input {
@@ -275,7 +275,6 @@ body>.fullscreen button {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     color: inherit;
     padding: 0.4rem 1.15rem 0.5rem;
     font-size: 1.15rem;
@@ -814,7 +813,8 @@ textarea,
 button,
 select {
     -webkit-appearance: none;
-    -moz-appearance: none
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input[type="text"],
@@ -875,6 +875,7 @@ input[type="radio"],
 input[type="checkbox"] {
     background: transparent;
     -webkit-appearance: none;
+    appearance: none;
     width: 1.6rem !important;
     height: 1.6rem;
     vertical-align: middle;
@@ -988,7 +989,6 @@ footer.main-footer>div {
         display: -moz-inline-stack;
         display: inline-block;
         zoom: 1;
-        *display: inline;
         width: 33.333%;
         vertical-align: top
     }
@@ -1558,7 +1558,6 @@ body.menu-open menu.main-menu {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     margin-right: 1.5rem
 }
 
@@ -1579,7 +1578,6 @@ body.menu-open menu.main-menu {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     display: block
 }
 
@@ -1775,7 +1773,6 @@ body.touchscreen .video-wrap .view-full {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     padding: 1.5rem 0;
     width: 100%
 }
@@ -1796,7 +1793,6 @@ body.touchscreen .video-wrap .view-full {
         display: -moz-inline-stack;
         display: inline-block;
         zoom: 1;
-        *display: inline
     }
 
     .row-grid .grid-item:nth-child(1):nth-last-child(4),
@@ -1827,7 +1823,6 @@ body.touchscreen .video-wrap .view-full {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     padding: 0 1.5rem 1.5rem;
     width: 50%
 }
@@ -1986,7 +1981,6 @@ body.touchscreen .video-wrap .view-full {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline
 }
 
 @media all and (orientation: portrait) {
@@ -2190,7 +2184,6 @@ nav .prev {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     white-space: pre
 }
 
@@ -2417,7 +2410,6 @@ body:not(.touchscreen) .project-filters {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     letter-spacing: -0.65em;
     width: 100%
 }
@@ -2432,7 +2424,6 @@ body:not(.touchscreen) .project-filters {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline
 }
 
 .project-filters .projects-sort {
@@ -3209,7 +3200,6 @@ body.touchscreen .slideshow-section .slideshow {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     background-color: #fcf4eb;
     color: #121212;
     padding: 1.5rem 3rem
@@ -3275,7 +3265,6 @@ body:not(.touchscreen) .slick-slide .slide-image:not(.object-height) img {
 div.slick-slider {
     width: 1px;
     min-width: 100%;
-    *width: 100%
 }
 
 .split {
@@ -3546,7 +3535,6 @@ div.slick-slider {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     width: 50%;
     vertical-align: top;
     padding-bottom: 1rem
@@ -3563,7 +3551,6 @@ ul.project-team li {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     width: 100%;
     vertical-align: top;
     padding-bottom: 1.8rem
@@ -3716,7 +3703,6 @@ body.search-open .modal.search-modal {
 
 .chosen-container {
     position: relative;
-    vertical-align: middle;
     width: 100% !important;
     display: block;
     font-size: inherit;
@@ -4331,7 +4317,6 @@ section:not(.projects-wrap) .black-bg a:not(.button):not([title]):not(:hover) {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
     margin: 0 0.7rem
 }
 
@@ -4393,7 +4378,6 @@ section:not(.projects-wrap) .black-bg a:not(.button):not([title]):not(:hover) {
         display: -moz-inline-stack;
         display: inline-block;
         zoom: 1;
-        *display: inline;
         width: 50%;
         vertical-align: top;
         padding: 0 1.5rem
