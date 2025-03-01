@@ -1379,6 +1379,9 @@ menu.main-menu .site-menu ul+ul {
     margin-top: 2.3rem
 }
 
+.floralwhite{
+    color: floralwhite;
+}
 menu.main-menu a {
     display: block;
     color: floralwhite;
@@ -5136,4 +5139,8 @@ body[data-loading="false"] header.opaque .menu-button:focus {
 .project-type-link {
     font-size: medium;
     padding-left: 20;
+}
+
+#publication-wrapper ul li {
+    list-style-image: none;
 }

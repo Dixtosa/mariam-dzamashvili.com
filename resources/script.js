@@ -3585,7 +3585,10 @@ var scroll =
     targetPage,
     menuOpen = !1,
     searchOpen = !1;
-$(document).ready(function () {
+$(function () {
+    var promotionalMessage = window.promotionalMessages[Math.floor(Math.random()*window.promotionalMessages.length)]
+    $("#promotional-message").text(promotionalMessage);
+
     var e;
     analyticsID && (gaTracker(analyticsID), gaTrack(currentState, pageName.split(" — ")[1]));
 

@@ -32,6 +32,7 @@
                 </div>
             </div>
         </section>
+        {{#description}}
         <div class="subnav-wrap">
             <nav class="subnav section-toggle" id="section-toggle">
                 <button>აღწერა</button>
@@ -56,45 +57,14 @@
             <div class="section-view" id="project-Recognition">
                 <section>
                     <div class="wrap text-wrap section-title-wrap body-copy">
-                        <h3>Publications</h3>
+                        <h3>პუბლიკაციები</h3>
                     </div>
-                    <div class="wrap text-wrap body-copy">
-                        <h6 class="subheading">{{year}}</h6>
-                        <p>
-                            {{publications}}
-                        </p>
+                    <div class="wrap text-wrap body-copy" id="publication-wrapper">
+                        {{{publications}}}
                     </div>
                 </section>
             </div>
         </div>
-
-        <!--
-        <nav class="post-nav white-bg black-text" id="projects-nav" data-project-id="22584"
-            data-project-slug="palms-residence">
-            <ul class="links">
-                <li>
-                    <a id="prev-link" href="/projects/manhattan-beach-residence/" class="prev">
-                        Prev<span class="wide-text">ious Project</span>
-                    </a>
-                </li>
-                <li class="all-projects-narrow">
-                    <a href="/#projects">All Projects</a>
-                </li>
-                <li class="all-projects-wide">
-                    <a href="/#projects">
-                        <span id="project-type">All Project Types</span>
-                        &nbsp;—&nbsp;<span id="project-designer">All Designers</span>
-                        &nbsp;—&nbsp;<span id="project-region">All Regions</span>
-                    </a>
-                </li>
-                <li>
-                    <a id="next-link" href="/projects/four-seasons-telluride/" class="next">
-                        Next<span class="wide-text">Project</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        -->
+        {{/description}}
     </div>
-    <!-- #content -->
 </div>
