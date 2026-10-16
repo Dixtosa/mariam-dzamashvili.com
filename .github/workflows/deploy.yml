@@ -1,0 +1,63 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  IMAGE: dzamashvilidesigns:latest
+  CONTAINER: dzamashvilidesigns
+  APP_DIR: source/dzamashvili-designs.com
+  # Live site data and project images, edited through /admin. Deploys never overwrite them.
+  DATA_DIR: /opt/dzamashvilidesigns
+
+jobs:
+  deploy:
+    name: Build and deploy
+    # The runner lives on the server, so the image is built and run right there: no registry, no SSH.
+    runs-on: self-hosted
+    environment: production
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t "$IMAGE" "$APP_DIR"
+
+      - name: Prepare persistent data
+        # Seeds Data/ and the project images from the repo on the first deploy only,
+        # and hands them to the container's non-root user so /admin can write to them.
+        run: |
+          docker run --rm --user root --entrypoint sh \
+            -v "$DATA_DIR:/data" \
+            -v "$GITHUB_WORKSPACE/$APP_DIR:/seed:ro" \
+            "$IMAGE" -c '
+              [ -d /data/Data ] || cp -r /seed/Data /data/Data
+              [ -d /data/images ] || cp -r /seed/wwwroot/projects/images /data/images
+              chown -R "$APP_UID:$APP_UID" /data/Data /data/images'
+
+      - name: Run container
+        env:
+          Admin__Password: ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          docker rm -f "$CONTAINER" 2>/dev/null || true
+          # Passes Admin__Password only when the secret is set, otherwise appsettings.json's password applies.
+          docker run -d --name "$CONTAINER" --restart unless-stopped \
+            -p 8080:8080 \
+            -v "$DATA_DIR/Data:/app/Data" \
+            -v "$DATA_DIR/images:/app/wwwroot/projects/images" \
+            ${Admin__Password:+-e Admin__Password} \
+            "$IMAGE"
+
+      - name: Remove old images
+        run: docker image prune -f
