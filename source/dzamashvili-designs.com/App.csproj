@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="15.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Data/*.json and the project images are edited live through /admin: keep them out of publish so a deploy can't overwrite them. -->
+    <Content Remove="Data\**;wwwroot\projects\images\**" />
+    <None Include="Data\**;wwwroot\projects\images\**" />
+  </ItemGroup>
+
+</Project>

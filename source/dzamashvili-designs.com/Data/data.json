@@ -1,0 +1,190 @@
+{
+  "promotionalMessages": [
+    "გთავაზობთ ნებისმიერი ობიექტის ინტერიერის დიზაინის შექმნას და მის განსახორციელებლად სრულ საპროექტო მომსახურებას",
+    "იდეიდან რეალობამდე - გთავაზობთ სრულ საპროექტო მომსახურებას თქვენი სივრცის გარდასაქმნელად"
+  ],
+  "projectData": {
+    "bina vashlijvari": {
+      "name": "bina vashlijvari",
+      "category": "apartment",
+      "location": "",
+      "description": ""
+    },
+    "Park Home ვაკე": {
+      "name": "Park Home ვაკე",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/bina-vakeshi-mariam-dzamashvili/' target='_blank'>homeis.ge სტატია - დეკორატიული განათებითა და კლასიკური ელემენტებით შექმნილი ინტერიერი ვაკეში</a></li></ul>"
+    },
+    "welcome to the jungle": {
+      "name": "welcome to the jungle",
+      "category": "apartment",
+      "description": ""
+    },
+    "არქი პოლიტკოვსკაია": {
+      "name": "არქი პოლიტკოვსკაია",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა 'ბახტრიონი'": {
+      "name": "ბინა 'ბახტრიონი'",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/avangarduli-bina-mariam-dzamashvili/' target='_blank'>homeis.ge სტატია - ავანგარდული ბინა ბახტრიონის ქუჩაზე</a></li></ul>"
+    },
+    "ბინა black mood": {
+      "name": "ბინა black mood",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა vintage house": {
+      "name": "ბინა vintage house",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა არტ ჰოლთან": {
+      "name": "ბინა არტ ჰოლთან",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/bina-betonis-elementebith-mariam-dzamashvili/' target='_blank'>homeis.ge სტატია - მყუდრო ბინა ბეტონის ელემენტებით</a></li></ul>"
+    },
+    "ბინა ბეტონის ელემენტებით": {
+      "name": "ბინა ბეტონის ელემენტებით",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/bina-tsotne-dadianis-quchaze/' target='_blank'>homeis.ge სტატია - ბინა ცოტნე დადიანის ქუჩაზე</a></li></ul>"
+    },
+    "ბინა გაზაფხული": {
+      "name": "ბინა გაზაფხული",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა გორგასალი": {
+      "name": "ბინა გორგასალი",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა იქსორი": {
+      "name": "ბინა იქსორი",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/bina-shartavaze-mariam-dzamashvili/' target='_blank'>homeis.ge სტატია - ეფექტური ბინა შარტავას ქუჩაზე</a></li></ul>"
+    },
+    "ბინა კიკვიძის პარკთან": {
+      "name": "ბინა კიკვიძის პარკთან",
+      "category": "apartment",
+      "description": "",
+      "publications": "<ul> <li><a href='https://www.homeis.ge/bina-nadzaladevshi-mariam-dzamashvili/' target='_blank'>homeis.ge სტატია - ბინა ნაძალადევში</a></li></ul>"
+    },
+    "ბინა მინდელზე programmers house": {
+      "name": "ბინა მინდელზე programmers house",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა ნუცუბიძე": {
+      "name": "ბინა ნუცუბიძე",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა ჟვანია": {
+      "name": "ბინა ჟვანია",
+      "category": "apartment",
+      "description": ""
+    },
+    "ბინა ყიფშიძეზე flora": {
+      "name": "ბინა ყიფშიძეზე flora",
+      "category": "apartment",
+      "description": ""
+    },
+    "პანორამა გაგარინი": {
+      "name": "პანორამა გაგარინი",
+      "category": "apartment",
+      "description": ""
+    },
+    "good choice": {
+      "name": "good choice",
+      "category": "commercial",
+      "description": ""
+    },
+    "sisauri grinders": {
+      "name": "sisauri grinders",
+      "category": "commercial",
+      "description": ""
+    },
+    "ნოტარიუსთა პალატა": {
+      "name": "ნოტარიუსთა პალატა",
+      "category": "commercial",
+      "description": ""
+    },
+    "რესტორანი რაჭა": {
+      "name": "რესტორანი რაჭა",
+      "category": "commercial",
+      "description": ""
+    },
+    "საადვოკატო ბიურო Mirabeau devant Dreux-Brézé": {
+      "name": "საადვოკატო ბიურო Mirabeau devant Dreux-Brézé",
+      "category": "commercial",
+      "description": ""
+    },
+    "სალონი ritual": {
+      "name": "სალონი ritual",
+      "category": "commercial",
+      "description": ""
+    },
+    "საქართველოს გენერალური პროკურატურის დიზაინი": {
+      "name": "საქართველოს გენერალური პროკურატურის დიზაინი",
+      "category": "commercial",
+      "description": ""
+    },
+    "საქართველოს ექსპერტიზის ეროვნული ბიურო": {
+      "name": "საქართველოს ექსპერტიზის ეროვნული ბიურო",
+      "category": "commercial",
+      "description": ""
+    },
+    "სტომატოლოგიური კლინიკა ვაკე": {
+      "name": "სტომატოლოგიური კლინიკა ვაკე",
+      "category": "commercial",
+      "description": ""
+    },
+    "ტანსაცმლის ბუტიკი": {
+      "name": "ტანსაცმლის ბუტიკი",
+      "category": "commercial",
+      "description": ""
+    },
+    "guest house in Nigeria": {
+      "name": "guest house in Nigeria",
+      "category": "private-house",
+      "description": ""
+    },
+    "ლისი house": {
+      "name": "ლისი house",
+      "category": "private-house",
+      "description": ""
+    },
+    "ლისი ტოპოგრაფი": {
+      "name": "ლისი ტოპოგრაფი",
+      "category": "private-house",
+      "description": ""
+    },
+    "სახლი დიღომში": {
+      "name": "სახლი დიღომში",
+      "category": "private-house",
+      "description": ""
+    },
+    "სახლი თხინვალაში": {
+      "name": "სახლი თხინვალაში",
+      "category": "private-house",
+      "description": ""
+    },
+    "სახლი ივერთუბანში": {
+      "name": "სახლი ივერთუბანში",
+      "category": "private-house",
+      "description": ""
+    },
+    "სახლი საგურამოში": {
+      "name": "სახლი საგურამოში",
+      "category": "private-house",
+      "description": ""
+    }
+  }
+}
