@@ -31,3 +31,7 @@ usermod -aG sudo deploy
 sudo mkdir -p /opt/dzamashvilidesigns
 sudo chown deploy:deploy /opt/dzamashvilidesigns
 cd /opt/dzamashvilidesigns
+
+cd /opt/actions-runner
+sudo ./svc.sh install
+sudo ./svc.sh start

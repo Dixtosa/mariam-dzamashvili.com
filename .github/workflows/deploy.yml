@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build image
-        run: docker build -t "$IMAGE" "$APP_DIR"
+        run: sudo docker build -t "$IMAGE" "$APP_DIR"
 
       - name: Prepare persistent data
         # Seeds Data/ and the project images from the repo on the first deploy only,
